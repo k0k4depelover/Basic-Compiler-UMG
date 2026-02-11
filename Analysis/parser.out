@@ -1,0 +1,2337 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    COLON
+    COMMA
+    POWER
+
+Grammar
+
+Rule 0     S' -> programa
+Rule 1     programa -> lista_instrucciones
+Rule 2     lista_instrucciones -> instruccion lista_instrucciones
+Rule 3     lista_instrucciones -> instruccion
+Rule 4     instruccion -> IF LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE lista_elif else_opcional
+Rule 5     lista_elif -> ELIF LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE lista_elif
+Rule 6     lista_elif -> empty
+Rule 7     else_opcional -> ELSE LBRACE lista_instrucciones RBRACE
+Rule 8     else_opcional -> empty
+Rule 9     instruccion -> WHILE LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE
+Rule 10    instruccion -> FOR LPAREN declara_o_asigna SEMICOLON condition SEMICOLON incremento RPAREN LBRACE lista_instrucciones RBRACE
+Rule 11    instruccion -> FOR LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE
+Rule 12    declara_o_asigna -> INT asignacion_base
+Rule 13    declara_o_asigna -> FLOAT asignacion_base
+Rule 14    declara_o_asigna -> STRING asignacion_base
+Rule 15    declara_o_asigna -> asignacion_base
+Rule 16    instruccion -> BREAK SEMICOLON
+Rule 17    instruccion -> CONTINUE SEMICOLON
+Rule 18    instruccion -> RETURN expression SEMICOLON
+Rule 19    instruccion -> RETURN SEMICOLON
+Rule 20    asignacion_base -> ID EQUAL expression
+Rule 21    instruccion -> asignacion_base SEMICOLON
+Rule 22    instruccion -> INT ID SEMICOLON
+Rule 23    instruccion -> FLOAT ID SEMICOLON
+Rule 24    instruccion -> STRING ID SEMICOLON
+Rule 25    instruccion -> INT asignacion_base SEMICOLON
+Rule 26    instruccion -> FLOAT asignacion_base SEMICOLON
+Rule 27    instruccion -> STRING asignacion_base SEMICOLON
+Rule 28    incremento -> ID INCREMENTO SEMICOLON
+Rule 29    incremento -> ID PLUS PLUS SEMICOLON
+Rule 30    decremento -> ID MINUS MINUS SEMICOLON
+Rule 31    decremento -> ID DECREMENTO SEMICOLON
+Rule 32    instruccion -> decremento
+Rule 33    instruccion -> expression SEMICOLON
+Rule 34    condition -> expression GREATER expression
+Rule 35    condition -> expression LESS expression
+Rule 36    condition -> expression ISEQUAL expression
+Rule 37    condition -> expression DISTINCT expression
+Rule 38    expression -> expression PLUS term
+Rule 39    expression -> expression MINUS term
+Rule 40    expression -> term
+Rule 41    term -> term TIMES factor
+Rule 42    term -> term DIVIDE factor
+Rule 43    term -> factor
+Rule 44    factor -> ID
+Rule 45    factor -> INT
+Rule 46    factor -> STRING
+Rule 47    factor -> LPAREN expression RPAREN
+Rule 48    instruccion -> PRINT LPAREN expression RPAREN SEMICOLON
+Rule 49    empty -> <empty>
+
+Terminals, with rules where they appear
+
+BREAK                : 16
+COLON                : 
+COMMA                : 
+CONTINUE             : 17
+DECREMENTO           : 31
+DISTINCT             : 37
+DIVIDE               : 42
+ELIF                 : 5
+ELSE                 : 7
+EQUAL                : 20
+FLOAT                : 13 23 26
+FOR                  : 10 11
+GREATER              : 34
+ID                   : 20 22 23 24 28 29 30 31 44
+IF                   : 4
+INCREMENTO           : 28
+INT                  : 12 22 25 45
+ISEQUAL              : 36
+LBRACE               : 4 5 7 9 10 11
+LESS                 : 35
+LPAREN               : 4 5 9 10 11 47 48
+MINUS                : 30 30 39
+PLUS                 : 29 29 38
+POWER                : 
+PRINT                : 48
+RBRACE               : 4 5 7 9 10 11
+RETURN               : 18 19
+RPAREN               : 4 5 9 10 11 47 48
+SEMICOLON            : 10 10 16 17 18 19 21 22 23 24 25 26 27 28 29 30 31 33 48
+STRING               : 14 24 27 46
+TIMES                : 41
+WHILE                : 9
+error                : 
+
+Nonterminals, with rules where they appear
+
+asignacion_base      : 12 13 14 15 21 25 26 27
+condition            : 4 5 9 10 11
+declara_o_asigna     : 10
+decremento           : 32
+else_opcional        : 4
+empty                : 6 8
+expression           : 18 20 33 34 34 35 35 36 36 37 37 38 39 47 48
+factor               : 41 42 43
+incremento           : 10
+instruccion          : 2 3
+lista_elif           : 4 5
+lista_instrucciones  : 1 2 4 5 7 9 10 11
+programa             : 0
+term                 : 38 39 40 41 42
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . programa
+    (1) programa -> . lista_instrucciones
+    (2) lista_instrucciones -> . instruccion lista_instrucciones
+    (3) lista_instrucciones -> . instruccion
+    (4) instruccion -> . IF LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE lista_elif else_opcional
+    (9) instruccion -> . WHILE LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE
+    (10) instruccion -> . FOR LPAREN declara_o_asigna SEMICOLON condition SEMICOLON incremento RPAREN LBRACE lista_instrucciones RBRACE
+    (11) instruccion -> . FOR LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE
+    (16) instruccion -> . BREAK SEMICOLON
+    (17) instruccion -> . CONTINUE SEMICOLON
+    (18) instruccion -> . RETURN expression SEMICOLON
+    (19) instruccion -> . RETURN SEMICOLON
+    (21) instruccion -> . asignacion_base SEMICOLON
+    (22) instruccion -> . INT ID SEMICOLON
+    (23) instruccion -> . FLOAT ID SEMICOLON
+    (24) instruccion -> . STRING ID SEMICOLON
+    (25) instruccion -> . INT asignacion_base SEMICOLON
+    (26) instruccion -> . FLOAT asignacion_base SEMICOLON
+    (27) instruccion -> . STRING asignacion_base SEMICOLON
+    (32) instruccion -> . decremento
+    (33) instruccion -> . expression SEMICOLON
+    (48) instruccion -> . PRINT LPAREN expression RPAREN SEMICOLON
+    (20) asignacion_base -> . ID EQUAL expression
+    (30) decremento -> . ID MINUS MINUS SEMICOLON
+    (31) decremento -> . ID DECREMENTO SEMICOLON
+    (38) expression -> . expression PLUS term
+    (39) expression -> . expression MINUS term
+    (40) expression -> . term
+    (41) term -> . term TIMES factor
+    (42) term -> . term DIVIDE factor
+    (43) term -> . factor
+    (44) factor -> . ID
+    (45) factor -> . INT
+    (46) factor -> . STRING
+    (47) factor -> . LPAREN expression RPAREN
+
+    IF              shift and go to state 4
+    WHILE           shift and go to state 6
+    FOR             shift and go to state 7
+    BREAK           shift and go to state 8
+    CONTINUE        shift and go to state 9
+    RETURN          shift and go to state 10
+    INT             shift and go to state 13
+    FLOAT           shift and go to state 15
+    STRING          shift and go to state 16
+    PRINT           shift and go to state 18
+    ID              shift and go to state 14
+    LPAREN          shift and go to state 5
+
+    programa                       shift and go to state 1
+    lista_instrucciones            shift and go to state 2
+    instruccion                    shift and go to state 3
+    expression                     shift and go to state 11
+    asignacion_base                shift and go to state 12
+    decremento                     shift and go to state 17
+    term                           shift and go to state 19
+    factor                         shift and go to state 20
+
+state 1
+
+    (0) S' -> programa .
+
+
+
+state 2
+
+    (1) programa -> lista_instrucciones .
+
+    $end            reduce using rule 1 (programa -> lista_instrucciones .)
+
+
+state 3
+
+    (2) lista_instrucciones -> instruccion . lista_instrucciones
+    (3) lista_instrucciones -> instruccion .
+    (2) lista_instrucciones -> . instruccion lista_instrucciones
+    (3) lista_instrucciones -> . instruccion
+    (4) instruccion -> . IF LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE lista_elif else_opcional
+    (9) instruccion -> . WHILE LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE
+    (10) instruccion -> . FOR LPAREN declara_o_asigna SEMICOLON condition SEMICOLON incremento RPAREN LBRACE lista_instrucciones RBRACE
+    (11) instruccion -> . FOR LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE
+    (16) instruccion -> . BREAK SEMICOLON
+    (17) instruccion -> . CONTINUE SEMICOLON
+    (18) instruccion -> . RETURN expression SEMICOLON
+    (19) instruccion -> . RETURN SEMICOLON
+    (21) instruccion -> . asignacion_base SEMICOLON
+    (22) instruccion -> . INT ID SEMICOLON
+    (23) instruccion -> . FLOAT ID SEMICOLON
+    (24) instruccion -> . STRING ID SEMICOLON
+    (25) instruccion -> . INT asignacion_base SEMICOLON
+    (26) instruccion -> . FLOAT asignacion_base SEMICOLON
+    (27) instruccion -> . STRING asignacion_base SEMICOLON
+    (32) instruccion -> . decremento
+    (33) instruccion -> . expression SEMICOLON
+    (48) instruccion -> . PRINT LPAREN expression RPAREN SEMICOLON
+    (20) asignacion_base -> . ID EQUAL expression
+    (30) decremento -> . ID MINUS MINUS SEMICOLON
+    (31) decremento -> . ID DECREMENTO SEMICOLON
+    (38) expression -> . expression PLUS term
+    (39) expression -> . expression MINUS term
+    (40) expression -> . term
+    (41) term -> . term TIMES factor
+    (42) term -> . term DIVIDE factor
+    (43) term -> . factor
+    (44) factor -> . ID
+    (45) factor -> . INT
+    (46) factor -> . STRING
+    (47) factor -> . LPAREN expression RPAREN
+
+    $end            reduce using rule 3 (lista_instrucciones -> instruccion .)
+    RBRACE          reduce using rule 3 (lista_instrucciones -> instruccion .)
+    IF              shift and go to state 4
+    WHILE           shift and go to state 6
+    FOR             shift and go to state 7
+    BREAK           shift and go to state 8
+    CONTINUE        shift and go to state 9
+    RETURN          shift and go to state 10
+    INT             shift and go to state 13
+    FLOAT           shift and go to state 15
+    STRING          shift and go to state 16
+    PRINT           shift and go to state 18
+    ID              shift and go to state 14
+    LPAREN          shift and go to state 5
+
+    instruccion                    shift and go to state 3
+    lista_instrucciones            shift and go to state 21
+    expression                     shift and go to state 11
+    asignacion_base                shift and go to state 12
+    decremento                     shift and go to state 17
+    term                           shift and go to state 19
+    factor                         shift and go to state 20
+
+state 4
+
+    (4) instruccion -> IF . LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE lista_elif else_opcional
+
+    LPAREN          shift and go to state 22
+
+
+state 5
+
+    (47) factor -> LPAREN . expression RPAREN
+    (38) expression -> . expression PLUS term
+    (39) expression -> . expression MINUS term
+    (40) expression -> . term
+    (41) term -> . term TIMES factor
+    (42) term -> . term DIVIDE factor
+    (43) term -> . factor
+    (44) factor -> . ID
+    (45) factor -> . INT
+    (46) factor -> . STRING
+    (47) factor -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 24
+    INT             shift and go to state 25
+    STRING          shift and go to state 26
+    LPAREN          shift and go to state 5
+
+    expression                     shift and go to state 23
+    term                           shift and go to state 19
+    factor                         shift and go to state 20
+
+state 6
+
+    (9) instruccion -> WHILE . LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE
+
+    LPAREN          shift and go to state 27
+
+
+state 7
+
+    (10) instruccion -> FOR . LPAREN declara_o_asigna SEMICOLON condition SEMICOLON incremento RPAREN LBRACE lista_instrucciones RBRACE
+    (11) instruccion -> FOR . LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE
+
+    LPAREN          shift and go to state 28
+
+
+state 8
+
+    (16) instruccion -> BREAK . SEMICOLON
+
+    SEMICOLON       shift and go to state 29
+
+
+state 9
+
+    (17) instruccion -> CONTINUE . SEMICOLON
+
+    SEMICOLON       shift and go to state 30
+
+
+state 10
+
+    (18) instruccion -> RETURN . expression SEMICOLON
+    (19) instruccion -> RETURN . SEMICOLON
+    (38) expression -> . expression PLUS term
+    (39) expression -> . expression MINUS term
+    (40) expression -> . term
+    (41) term -> . term TIMES factor
+    (42) term -> . term DIVIDE factor
+    (43) term -> . factor
+    (44) factor -> . ID
+    (45) factor -> . INT
+    (46) factor -> . STRING
+    (47) factor -> . LPAREN expression RPAREN
+
+    SEMICOLON       shift and go to state 32
+    ID              shift and go to state 24
+    INT             shift and go to state 25
+    STRING          shift and go to state 26
+    LPAREN          shift and go to state 5
+
+    expression                     shift and go to state 31
+    term                           shift and go to state 19
+    factor                         shift and go to state 20
+
+state 11
+
+    (33) instruccion -> expression . SEMICOLON
+    (38) expression -> expression . PLUS term
+    (39) expression -> expression . MINUS term
+
+    SEMICOLON       shift and go to state 33
+    PLUS            shift and go to state 34
+    MINUS           shift and go to state 35
+
+
+state 12
+
+    (21) instruccion -> asignacion_base . SEMICOLON
+
+    SEMICOLON       shift and go to state 36
+
+
+state 13
+
+    (22) instruccion -> INT . ID SEMICOLON
+    (25) instruccion -> INT . asignacion_base SEMICOLON
+    (45) factor -> INT .
+    (20) asignacion_base -> . ID EQUAL expression
+
+    ID              shift and go to state 37
+    TIMES           reduce using rule 45 (factor -> INT .)
+    DIVIDE          reduce using rule 45 (factor -> INT .)
+    SEMICOLON       reduce using rule 45 (factor -> INT .)
+    PLUS            reduce using rule 45 (factor -> INT .)
+    MINUS           reduce using rule 45 (factor -> INT .)
+
+    asignacion_base                shift and go to state 38
+
+state 14
+
+    (20) asignacion_base -> ID . EQUAL expression
+    (30) decremento -> ID . MINUS MINUS SEMICOLON
+    (31) decremento -> ID . DECREMENTO SEMICOLON
+    (44) factor -> ID .
+
+  ! shift/reduce conflict for MINUS resolved as shift
+    EQUAL           shift and go to state 39
+    MINUS           shift and go to state 40
+    DECREMENTO      shift and go to state 41
+    TIMES           reduce using rule 44 (factor -> ID .)
+    DIVIDE          reduce using rule 44 (factor -> ID .)
+    SEMICOLON       reduce using rule 44 (factor -> ID .)
+    PLUS            reduce using rule 44 (factor -> ID .)
+
+  ! MINUS           [ reduce using rule 44 (factor -> ID .) ]
+
+
+state 15
+
+    (23) instruccion -> FLOAT . ID SEMICOLON
+    (26) instruccion -> FLOAT . asignacion_base SEMICOLON
+    (20) asignacion_base -> . ID EQUAL expression
+
+    ID              shift and go to state 42
+
+    asignacion_base                shift and go to state 43
+
+state 16
+
+    (24) instruccion -> STRING . ID SEMICOLON
+    (27) instruccion -> STRING . asignacion_base SEMICOLON
+    (46) factor -> STRING .
+    (20) asignacion_base -> . ID EQUAL expression
+
+    ID              shift and go to state 44
+    TIMES           reduce using rule 46 (factor -> STRING .)
+    DIVIDE          reduce using rule 46 (factor -> STRING .)
+    SEMICOLON       reduce using rule 46 (factor -> STRING .)
+    PLUS            reduce using rule 46 (factor -> STRING .)
+    MINUS           reduce using rule 46 (factor -> STRING .)
+
+    asignacion_base                shift and go to state 45
+
+state 17
+
+    (32) instruccion -> decremento .
+
+    IF              reduce using rule 32 (instruccion -> decremento .)
+    WHILE           reduce using rule 32 (instruccion -> decremento .)
+    FOR             reduce using rule 32 (instruccion -> decremento .)
+    BREAK           reduce using rule 32 (instruccion -> decremento .)
+    CONTINUE        reduce using rule 32 (instruccion -> decremento .)
+    RETURN          reduce using rule 32 (instruccion -> decremento .)
+    INT             reduce using rule 32 (instruccion -> decremento .)
+    FLOAT           reduce using rule 32 (instruccion -> decremento .)
+    STRING          reduce using rule 32 (instruccion -> decremento .)
+    PRINT           reduce using rule 32 (instruccion -> decremento .)
+    ID              reduce using rule 32 (instruccion -> decremento .)
+    LPAREN          reduce using rule 32 (instruccion -> decremento .)
+    $end            reduce using rule 32 (instruccion -> decremento .)
+    RBRACE          reduce using rule 32 (instruccion -> decremento .)
+
+
+state 18
+
+    (48) instruccion -> PRINT . LPAREN expression RPAREN SEMICOLON
+
+    LPAREN          shift and go to state 46
+
+
+state 19
+
+    (40) expression -> term .
+    (41) term -> term . TIMES factor
+    (42) term -> term . DIVIDE factor
+
+    SEMICOLON       reduce using rule 40 (expression -> term .)
+    PLUS            reduce using rule 40 (expression -> term .)
+    MINUS           reduce using rule 40 (expression -> term .)
+    RPAREN          reduce using rule 40 (expression -> term .)
+    GREATER         reduce using rule 40 (expression -> term .)
+    LESS            reduce using rule 40 (expression -> term .)
+    ISEQUAL         reduce using rule 40 (expression -> term .)
+    DISTINCT        reduce using rule 40 (expression -> term .)
+    TIMES           shift and go to state 47
+    DIVIDE          shift and go to state 48
+
+
+state 20
+
+    (43) term -> factor .
+
+    TIMES           reduce using rule 43 (term -> factor .)
+    DIVIDE          reduce using rule 43 (term -> factor .)
+    SEMICOLON       reduce using rule 43 (term -> factor .)
+    PLUS            reduce using rule 43 (term -> factor .)
+    MINUS           reduce using rule 43 (term -> factor .)
+    RPAREN          reduce using rule 43 (term -> factor .)
+    GREATER         reduce using rule 43 (term -> factor .)
+    LESS            reduce using rule 43 (term -> factor .)
+    ISEQUAL         reduce using rule 43 (term -> factor .)
+    DISTINCT        reduce using rule 43 (term -> factor .)
+
+
+state 21
+
+    (2) lista_instrucciones -> instruccion lista_instrucciones .
+
+    $end            reduce using rule 2 (lista_instrucciones -> instruccion lista_instrucciones .)
+    RBRACE          reduce using rule 2 (lista_instrucciones -> instruccion lista_instrucciones .)
+
+
+state 22
+
+    (4) instruccion -> IF LPAREN . condition RPAREN LBRACE lista_instrucciones RBRACE lista_elif else_opcional
+    (34) condition -> . expression GREATER expression
+    (35) condition -> . expression LESS expression
+    (36) condition -> . expression ISEQUAL expression
+    (37) condition -> . expression DISTINCT expression
+    (38) expression -> . expression PLUS term
+    (39) expression -> . expression MINUS term
+    (40) expression -> . term
+    (41) term -> . term TIMES factor
+    (42) term -> . term DIVIDE factor
+    (43) term -> . factor
+    (44) factor -> . ID
+    (45) factor -> . INT
+    (46) factor -> . STRING
+    (47) factor -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 24
+    INT             shift and go to state 25
+    STRING          shift and go to state 26
+    LPAREN          shift and go to state 5
+
+    condition                      shift and go to state 49
+    expression                     shift and go to state 50
+    term                           shift and go to state 19
+    factor                         shift and go to state 20
+
+state 23
+
+    (47) factor -> LPAREN expression . RPAREN
+    (38) expression -> expression . PLUS term
+    (39) expression -> expression . MINUS term
+
+    RPAREN          shift and go to state 51
+    PLUS            shift and go to state 34
+    MINUS           shift and go to state 35
+
+
+state 24
+
+    (44) factor -> ID .
+
+    TIMES           reduce using rule 44 (factor -> ID .)
+    DIVIDE          reduce using rule 44 (factor -> ID .)
+    RPAREN          reduce using rule 44 (factor -> ID .)
+    PLUS            reduce using rule 44 (factor -> ID .)
+    MINUS           reduce using rule 44 (factor -> ID .)
+    SEMICOLON       reduce using rule 44 (factor -> ID .)
+    GREATER         reduce using rule 44 (factor -> ID .)
+    LESS            reduce using rule 44 (factor -> ID .)
+    ISEQUAL         reduce using rule 44 (factor -> ID .)
+    DISTINCT        reduce using rule 44 (factor -> ID .)
+
+
+state 25
+
+    (45) factor -> INT .
+
+    TIMES           reduce using rule 45 (factor -> INT .)
+    DIVIDE          reduce using rule 45 (factor -> INT .)
+    RPAREN          reduce using rule 45 (factor -> INT .)
+    PLUS            reduce using rule 45 (factor -> INT .)
+    MINUS           reduce using rule 45 (factor -> INT .)
+    SEMICOLON       reduce using rule 45 (factor -> INT .)
+    GREATER         reduce using rule 45 (factor -> INT .)
+    LESS            reduce using rule 45 (factor -> INT .)
+    ISEQUAL         reduce using rule 45 (factor -> INT .)
+    DISTINCT        reduce using rule 45 (factor -> INT .)
+
+
+state 26
+
+    (46) factor -> STRING .
+
+    TIMES           reduce using rule 46 (factor -> STRING .)
+    DIVIDE          reduce using rule 46 (factor -> STRING .)
+    RPAREN          reduce using rule 46 (factor -> STRING .)
+    PLUS            reduce using rule 46 (factor -> STRING .)
+    MINUS           reduce using rule 46 (factor -> STRING .)
+    SEMICOLON       reduce using rule 46 (factor -> STRING .)
+    GREATER         reduce using rule 46 (factor -> STRING .)
+    LESS            reduce using rule 46 (factor -> STRING .)
+    ISEQUAL         reduce using rule 46 (factor -> STRING .)
+    DISTINCT        reduce using rule 46 (factor -> STRING .)
+
+
+state 27
+
+    (9) instruccion -> WHILE LPAREN . condition RPAREN LBRACE lista_instrucciones RBRACE
+    (34) condition -> . expression GREATER expression
+    (35) condition -> . expression LESS expression
+    (36) condition -> . expression ISEQUAL expression
+    (37) condition -> . expression DISTINCT expression
+    (38) expression -> . expression PLUS term
+    (39) expression -> . expression MINUS term
+    (40) expression -> . term
+    (41) term -> . term TIMES factor
+    (42) term -> . term DIVIDE factor
+    (43) term -> . factor
+    (44) factor -> . ID
+    (45) factor -> . INT
+    (46) factor -> . STRING
+    (47) factor -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 24
+    INT             shift and go to state 25
+    STRING          shift and go to state 26
+    LPAREN          shift and go to state 5
+
+    condition                      shift and go to state 52
+    expression                     shift and go to state 50
+    term                           shift and go to state 19
+    factor                         shift and go to state 20
+
+state 28
+
+    (10) instruccion -> FOR LPAREN . declara_o_asigna SEMICOLON condition SEMICOLON incremento RPAREN LBRACE lista_instrucciones RBRACE
+    (11) instruccion -> FOR LPAREN . condition RPAREN LBRACE lista_instrucciones RBRACE
+    (12) declara_o_asigna -> . INT asignacion_base
+    (13) declara_o_asigna -> . FLOAT asignacion_base
+    (14) declara_o_asigna -> . STRING asignacion_base
+    (15) declara_o_asigna -> . asignacion_base
+    (34) condition -> . expression GREATER expression
+    (35) condition -> . expression LESS expression
+    (36) condition -> . expression ISEQUAL expression
+    (37) condition -> . expression DISTINCT expression
+    (20) asignacion_base -> . ID EQUAL expression
+    (38) expression -> . expression PLUS term
+    (39) expression -> . expression MINUS term
+    (40) expression -> . term
+    (41) term -> . term TIMES factor
+    (42) term -> . term DIVIDE factor
+    (43) term -> . factor
+    (44) factor -> . ID
+    (45) factor -> . INT
+    (46) factor -> . STRING
+    (47) factor -> . LPAREN expression RPAREN
+
+    INT             shift and go to state 55
+    FLOAT           shift and go to state 57
+    STRING          shift and go to state 58
+    ID              shift and go to state 59
+    LPAREN          shift and go to state 5
+
+    declara_o_asigna               shift and go to state 53
+    condition                      shift and go to state 54
+    asignacion_base                shift and go to state 56
+    expression                     shift and go to state 50
+    term                           shift and go to state 19
+    factor                         shift and go to state 20
+
+state 29
+
+    (16) instruccion -> BREAK SEMICOLON .
+
+    IF              reduce using rule 16 (instruccion -> BREAK SEMICOLON .)
+    WHILE           reduce using rule 16 (instruccion -> BREAK SEMICOLON .)
+    FOR             reduce using rule 16 (instruccion -> BREAK SEMICOLON .)
+    BREAK           reduce using rule 16 (instruccion -> BREAK SEMICOLON .)
+    CONTINUE        reduce using rule 16 (instruccion -> BREAK SEMICOLON .)
+    RETURN          reduce using rule 16 (instruccion -> BREAK SEMICOLON .)
+    INT             reduce using rule 16 (instruccion -> BREAK SEMICOLON .)
+    FLOAT           reduce using rule 16 (instruccion -> BREAK SEMICOLON .)
+    STRING          reduce using rule 16 (instruccion -> BREAK SEMICOLON .)
+    PRINT           reduce using rule 16 (instruccion -> BREAK SEMICOLON .)
+    ID              reduce using rule 16 (instruccion -> BREAK SEMICOLON .)
+    LPAREN          reduce using rule 16 (instruccion -> BREAK SEMICOLON .)
+    $end            reduce using rule 16 (instruccion -> BREAK SEMICOLON .)
+    RBRACE          reduce using rule 16 (instruccion -> BREAK SEMICOLON .)
+
+
+state 30
+
+    (17) instruccion -> CONTINUE SEMICOLON .
+
+    IF              reduce using rule 17 (instruccion -> CONTINUE SEMICOLON .)
+    WHILE           reduce using rule 17 (instruccion -> CONTINUE SEMICOLON .)
+    FOR             reduce using rule 17 (instruccion -> CONTINUE SEMICOLON .)
+    BREAK           reduce using rule 17 (instruccion -> CONTINUE SEMICOLON .)
+    CONTINUE        reduce using rule 17 (instruccion -> CONTINUE SEMICOLON .)
+    RETURN          reduce using rule 17 (instruccion -> CONTINUE SEMICOLON .)
+    INT             reduce using rule 17 (instruccion -> CONTINUE SEMICOLON .)
+    FLOAT           reduce using rule 17 (instruccion -> CONTINUE SEMICOLON .)
+    STRING          reduce using rule 17 (instruccion -> CONTINUE SEMICOLON .)
+    PRINT           reduce using rule 17 (instruccion -> CONTINUE SEMICOLON .)
+    ID              reduce using rule 17 (instruccion -> CONTINUE SEMICOLON .)
+    LPAREN          reduce using rule 17 (instruccion -> CONTINUE SEMICOLON .)
+    $end            reduce using rule 17 (instruccion -> CONTINUE SEMICOLON .)
+    RBRACE          reduce using rule 17 (instruccion -> CONTINUE SEMICOLON .)
+
+
+state 31
+
+    (18) instruccion -> RETURN expression . SEMICOLON
+    (38) expression -> expression . PLUS term
+    (39) expression -> expression . MINUS term
+
+    SEMICOLON       shift and go to state 60
+    PLUS            shift and go to state 34
+    MINUS           shift and go to state 35
+
+
+state 32
+
+    (19) instruccion -> RETURN SEMICOLON .
+
+    IF              reduce using rule 19 (instruccion -> RETURN SEMICOLON .)
+    WHILE           reduce using rule 19 (instruccion -> RETURN SEMICOLON .)
+    FOR             reduce using rule 19 (instruccion -> RETURN SEMICOLON .)
+    BREAK           reduce using rule 19 (instruccion -> RETURN SEMICOLON .)
+    CONTINUE        reduce using rule 19 (instruccion -> RETURN SEMICOLON .)
+    RETURN          reduce using rule 19 (instruccion -> RETURN SEMICOLON .)
+    INT             reduce using rule 19 (instruccion -> RETURN SEMICOLON .)
+    FLOAT           reduce using rule 19 (instruccion -> RETURN SEMICOLON .)
+    STRING          reduce using rule 19 (instruccion -> RETURN SEMICOLON .)
+    PRINT           reduce using rule 19 (instruccion -> RETURN SEMICOLON .)
+    ID              reduce using rule 19 (instruccion -> RETURN SEMICOLON .)
+    LPAREN          reduce using rule 19 (instruccion -> RETURN SEMICOLON .)
+    $end            reduce using rule 19 (instruccion -> RETURN SEMICOLON .)
+    RBRACE          reduce using rule 19 (instruccion -> RETURN SEMICOLON .)
+
+
+state 33
+
+    (33) instruccion -> expression SEMICOLON .
+
+    IF              reduce using rule 33 (instruccion -> expression SEMICOLON .)
+    WHILE           reduce using rule 33 (instruccion -> expression SEMICOLON .)
+    FOR             reduce using rule 33 (instruccion -> expression SEMICOLON .)
+    BREAK           reduce using rule 33 (instruccion -> expression SEMICOLON .)
+    CONTINUE        reduce using rule 33 (instruccion -> expression SEMICOLON .)
+    RETURN          reduce using rule 33 (instruccion -> expression SEMICOLON .)
+    INT             reduce using rule 33 (instruccion -> expression SEMICOLON .)
+    FLOAT           reduce using rule 33 (instruccion -> expression SEMICOLON .)
+    STRING          reduce using rule 33 (instruccion -> expression SEMICOLON .)
+    PRINT           reduce using rule 33 (instruccion -> expression SEMICOLON .)
+    ID              reduce using rule 33 (instruccion -> expression SEMICOLON .)
+    LPAREN          reduce using rule 33 (instruccion -> expression SEMICOLON .)
+    $end            reduce using rule 33 (instruccion -> expression SEMICOLON .)
+    RBRACE          reduce using rule 33 (instruccion -> expression SEMICOLON .)
+
+
+state 34
+
+    (38) expression -> expression PLUS . term
+    (41) term -> . term TIMES factor
+    (42) term -> . term DIVIDE factor
+    (43) term -> . factor
+    (44) factor -> . ID
+    (45) factor -> . INT
+    (46) factor -> . STRING
+    (47) factor -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 24
+    INT             shift and go to state 25
+    STRING          shift and go to state 26
+    LPAREN          shift and go to state 5
+
+    term                           shift and go to state 61
+    factor                         shift and go to state 20
+
+state 35
+
+    (39) expression -> expression MINUS . term
+    (41) term -> . term TIMES factor
+    (42) term -> . term DIVIDE factor
+    (43) term -> . factor
+    (44) factor -> . ID
+    (45) factor -> . INT
+    (46) factor -> . STRING
+    (47) factor -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 24
+    INT             shift and go to state 25
+    STRING          shift and go to state 26
+    LPAREN          shift and go to state 5
+
+    term                           shift and go to state 62
+    factor                         shift and go to state 20
+
+state 36
+
+    (21) instruccion -> asignacion_base SEMICOLON .
+
+    IF              reduce using rule 21 (instruccion -> asignacion_base SEMICOLON .)
+    WHILE           reduce using rule 21 (instruccion -> asignacion_base SEMICOLON .)
+    FOR             reduce using rule 21 (instruccion -> asignacion_base SEMICOLON .)
+    BREAK           reduce using rule 21 (instruccion -> asignacion_base SEMICOLON .)
+    CONTINUE        reduce using rule 21 (instruccion -> asignacion_base SEMICOLON .)
+    RETURN          reduce using rule 21 (instruccion -> asignacion_base SEMICOLON .)
+    INT             reduce using rule 21 (instruccion -> asignacion_base SEMICOLON .)
+    FLOAT           reduce using rule 21 (instruccion -> asignacion_base SEMICOLON .)
+    STRING          reduce using rule 21 (instruccion -> asignacion_base SEMICOLON .)
+    PRINT           reduce using rule 21 (instruccion -> asignacion_base SEMICOLON .)
+    ID              reduce using rule 21 (instruccion -> asignacion_base SEMICOLON .)
+    LPAREN          reduce using rule 21 (instruccion -> asignacion_base SEMICOLON .)
+    $end            reduce using rule 21 (instruccion -> asignacion_base SEMICOLON .)
+    RBRACE          reduce using rule 21 (instruccion -> asignacion_base SEMICOLON .)
+
+
+state 37
+
+    (22) instruccion -> INT ID . SEMICOLON
+    (20) asignacion_base -> ID . EQUAL expression
+
+    SEMICOLON       shift and go to state 63
+    EQUAL           shift and go to state 39
+
+
+state 38
+
+    (25) instruccion -> INT asignacion_base . SEMICOLON
+
+    SEMICOLON       shift and go to state 64
+
+
+state 39
+
+    (20) asignacion_base -> ID EQUAL . expression
+    (38) expression -> . expression PLUS term
+    (39) expression -> . expression MINUS term
+    (40) expression -> . term
+    (41) term -> . term TIMES factor
+    (42) term -> . term DIVIDE factor
+    (43) term -> . factor
+    (44) factor -> . ID
+    (45) factor -> . INT
+    (46) factor -> . STRING
+    (47) factor -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 24
+    INT             shift and go to state 25
+    STRING          shift and go to state 26
+    LPAREN          shift and go to state 5
+
+    expression                     shift and go to state 65
+    term                           shift and go to state 19
+    factor                         shift and go to state 20
+
+state 40
+
+    (30) decremento -> ID MINUS . MINUS SEMICOLON
+
+    MINUS           shift and go to state 66
+
+
+state 41
+
+    (31) decremento -> ID DECREMENTO . SEMICOLON
+
+    SEMICOLON       shift and go to state 67
+
+
+state 42
+
+    (23) instruccion -> FLOAT ID . SEMICOLON
+    (20) asignacion_base -> ID . EQUAL expression
+
+    SEMICOLON       shift and go to state 68
+    EQUAL           shift and go to state 39
+
+
+state 43
+
+    (26) instruccion -> FLOAT asignacion_base . SEMICOLON
+
+    SEMICOLON       shift and go to state 69
+
+
+state 44
+
+    (24) instruccion -> STRING ID . SEMICOLON
+    (20) asignacion_base -> ID . EQUAL expression
+
+    SEMICOLON       shift and go to state 70
+    EQUAL           shift and go to state 39
+
+
+state 45
+
+    (27) instruccion -> STRING asignacion_base . SEMICOLON
+
+    SEMICOLON       shift and go to state 71
+
+
+state 46
+
+    (48) instruccion -> PRINT LPAREN . expression RPAREN SEMICOLON
+    (38) expression -> . expression PLUS term
+    (39) expression -> . expression MINUS term
+    (40) expression -> . term
+    (41) term -> . term TIMES factor
+    (42) term -> . term DIVIDE factor
+    (43) term -> . factor
+    (44) factor -> . ID
+    (45) factor -> . INT
+    (46) factor -> . STRING
+    (47) factor -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 24
+    INT             shift and go to state 25
+    STRING          shift and go to state 26
+    LPAREN          shift and go to state 5
+
+    expression                     shift and go to state 72
+    term                           shift and go to state 19
+    factor                         shift and go to state 20
+
+state 47
+
+    (41) term -> term TIMES . factor
+    (44) factor -> . ID
+    (45) factor -> . INT
+    (46) factor -> . STRING
+    (47) factor -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 24
+    INT             shift and go to state 25
+    STRING          shift and go to state 26
+    LPAREN          shift and go to state 5
+
+    factor                         shift and go to state 73
+
+state 48
+
+    (42) term -> term DIVIDE . factor
+    (44) factor -> . ID
+    (45) factor -> . INT
+    (46) factor -> . STRING
+    (47) factor -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 24
+    INT             shift and go to state 25
+    STRING          shift and go to state 26
+    LPAREN          shift and go to state 5
+
+    factor                         shift and go to state 74
+
+state 49
+
+    (4) instruccion -> IF LPAREN condition . RPAREN LBRACE lista_instrucciones RBRACE lista_elif else_opcional
+
+    RPAREN          shift and go to state 75
+
+
+state 50
+
+    (34) condition -> expression . GREATER expression
+    (35) condition -> expression . LESS expression
+    (36) condition -> expression . ISEQUAL expression
+    (37) condition -> expression . DISTINCT expression
+    (38) expression -> expression . PLUS term
+    (39) expression -> expression . MINUS term
+
+    GREATER         shift and go to state 76
+    LESS            shift and go to state 77
+    ISEQUAL         shift and go to state 78
+    DISTINCT        shift and go to state 79
+    PLUS            shift and go to state 34
+    MINUS           shift and go to state 35
+
+
+state 51
+
+    (47) factor -> LPAREN expression RPAREN .
+
+    TIMES           reduce using rule 47 (factor -> LPAREN expression RPAREN .)
+    DIVIDE          reduce using rule 47 (factor -> LPAREN expression RPAREN .)
+    SEMICOLON       reduce using rule 47 (factor -> LPAREN expression RPAREN .)
+    PLUS            reduce using rule 47 (factor -> LPAREN expression RPAREN .)
+    MINUS           reduce using rule 47 (factor -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 47 (factor -> LPAREN expression RPAREN .)
+    GREATER         reduce using rule 47 (factor -> LPAREN expression RPAREN .)
+    LESS            reduce using rule 47 (factor -> LPAREN expression RPAREN .)
+    ISEQUAL         reduce using rule 47 (factor -> LPAREN expression RPAREN .)
+    DISTINCT        reduce using rule 47 (factor -> LPAREN expression RPAREN .)
+
+
+state 52
+
+    (9) instruccion -> WHILE LPAREN condition . RPAREN LBRACE lista_instrucciones RBRACE
+
+    RPAREN          shift and go to state 80
+
+
+state 53
+
+    (10) instruccion -> FOR LPAREN declara_o_asigna . SEMICOLON condition SEMICOLON incremento RPAREN LBRACE lista_instrucciones RBRACE
+
+    SEMICOLON       shift and go to state 81
+
+
+state 54
+
+    (11) instruccion -> FOR LPAREN condition . RPAREN LBRACE lista_instrucciones RBRACE
+
+    RPAREN          shift and go to state 82
+
+
+state 55
+
+    (12) declara_o_asigna -> INT . asignacion_base
+    (45) factor -> INT .
+    (20) asignacion_base -> . ID EQUAL expression
+
+    TIMES           reduce using rule 45 (factor -> INT .)
+    DIVIDE          reduce using rule 45 (factor -> INT .)
+    GREATER         reduce using rule 45 (factor -> INT .)
+    LESS            reduce using rule 45 (factor -> INT .)
+    ISEQUAL         reduce using rule 45 (factor -> INT .)
+    DISTINCT        reduce using rule 45 (factor -> INT .)
+    PLUS            reduce using rule 45 (factor -> INT .)
+    MINUS           reduce using rule 45 (factor -> INT .)
+    ID              shift and go to state 84
+
+    asignacion_base                shift and go to state 83
+
+state 56
+
+    (15) declara_o_asigna -> asignacion_base .
+
+    SEMICOLON       reduce using rule 15 (declara_o_asigna -> asignacion_base .)
+
+
+state 57
+
+    (13) declara_o_asigna -> FLOAT . asignacion_base
+    (20) asignacion_base -> . ID EQUAL expression
+
+    ID              shift and go to state 84
+
+    asignacion_base                shift and go to state 85
+
+state 58
+
+    (14) declara_o_asigna -> STRING . asignacion_base
+    (46) factor -> STRING .
+    (20) asignacion_base -> . ID EQUAL expression
+
+    TIMES           reduce using rule 46 (factor -> STRING .)
+    DIVIDE          reduce using rule 46 (factor -> STRING .)
+    GREATER         reduce using rule 46 (factor -> STRING .)
+    LESS            reduce using rule 46 (factor -> STRING .)
+    ISEQUAL         reduce using rule 46 (factor -> STRING .)
+    DISTINCT        reduce using rule 46 (factor -> STRING .)
+    PLUS            reduce using rule 46 (factor -> STRING .)
+    MINUS           reduce using rule 46 (factor -> STRING .)
+    ID              shift and go to state 84
+
+    asignacion_base                shift and go to state 86
+
+state 59
+
+    (20) asignacion_base -> ID . EQUAL expression
+    (44) factor -> ID .
+
+    EQUAL           shift and go to state 39
+    TIMES           reduce using rule 44 (factor -> ID .)
+    DIVIDE          reduce using rule 44 (factor -> ID .)
+    GREATER         reduce using rule 44 (factor -> ID .)
+    LESS            reduce using rule 44 (factor -> ID .)
+    ISEQUAL         reduce using rule 44 (factor -> ID .)
+    DISTINCT        reduce using rule 44 (factor -> ID .)
+    PLUS            reduce using rule 44 (factor -> ID .)
+    MINUS           reduce using rule 44 (factor -> ID .)
+
+
+state 60
+
+    (18) instruccion -> RETURN expression SEMICOLON .
+
+    IF              reduce using rule 18 (instruccion -> RETURN expression SEMICOLON .)
+    WHILE           reduce using rule 18 (instruccion -> RETURN expression SEMICOLON .)
+    FOR             reduce using rule 18 (instruccion -> RETURN expression SEMICOLON .)
+    BREAK           reduce using rule 18 (instruccion -> RETURN expression SEMICOLON .)
+    CONTINUE        reduce using rule 18 (instruccion -> RETURN expression SEMICOLON .)
+    RETURN          reduce using rule 18 (instruccion -> RETURN expression SEMICOLON .)
+    INT             reduce using rule 18 (instruccion -> RETURN expression SEMICOLON .)
+    FLOAT           reduce using rule 18 (instruccion -> RETURN expression SEMICOLON .)
+    STRING          reduce using rule 18 (instruccion -> RETURN expression SEMICOLON .)
+    PRINT           reduce using rule 18 (instruccion -> RETURN expression SEMICOLON .)
+    ID              reduce using rule 18 (instruccion -> RETURN expression SEMICOLON .)
+    LPAREN          reduce using rule 18 (instruccion -> RETURN expression SEMICOLON .)
+    $end            reduce using rule 18 (instruccion -> RETURN expression SEMICOLON .)
+    RBRACE          reduce using rule 18 (instruccion -> RETURN expression SEMICOLON .)
+
+
+state 61
+
+    (38) expression -> expression PLUS term .
+    (41) term -> term . TIMES factor
+    (42) term -> term . DIVIDE factor
+
+    SEMICOLON       reduce using rule 38 (expression -> expression PLUS term .)
+    PLUS            reduce using rule 38 (expression -> expression PLUS term .)
+    MINUS           reduce using rule 38 (expression -> expression PLUS term .)
+    RPAREN          reduce using rule 38 (expression -> expression PLUS term .)
+    GREATER         reduce using rule 38 (expression -> expression PLUS term .)
+    LESS            reduce using rule 38 (expression -> expression PLUS term .)
+    ISEQUAL         reduce using rule 38 (expression -> expression PLUS term .)
+    DISTINCT        reduce using rule 38 (expression -> expression PLUS term .)
+    TIMES           shift and go to state 47
+    DIVIDE          shift and go to state 48
+
+
+state 62
+
+    (39) expression -> expression MINUS term .
+    (41) term -> term . TIMES factor
+    (42) term -> term . DIVIDE factor
+
+    SEMICOLON       reduce using rule 39 (expression -> expression MINUS term .)
+    PLUS            reduce using rule 39 (expression -> expression MINUS term .)
+    MINUS           reduce using rule 39 (expression -> expression MINUS term .)
+    RPAREN          reduce using rule 39 (expression -> expression MINUS term .)
+    GREATER         reduce using rule 39 (expression -> expression MINUS term .)
+    LESS            reduce using rule 39 (expression -> expression MINUS term .)
+    ISEQUAL         reduce using rule 39 (expression -> expression MINUS term .)
+    DISTINCT        reduce using rule 39 (expression -> expression MINUS term .)
+    TIMES           shift and go to state 47
+    DIVIDE          shift and go to state 48
+
+
+state 63
+
+    (22) instruccion -> INT ID SEMICOLON .
+
+    IF              reduce using rule 22 (instruccion -> INT ID SEMICOLON .)
+    WHILE           reduce using rule 22 (instruccion -> INT ID SEMICOLON .)
+    FOR             reduce using rule 22 (instruccion -> INT ID SEMICOLON .)
+    BREAK           reduce using rule 22 (instruccion -> INT ID SEMICOLON .)
+    CONTINUE        reduce using rule 22 (instruccion -> INT ID SEMICOLON .)
+    RETURN          reduce using rule 22 (instruccion -> INT ID SEMICOLON .)
+    INT             reduce using rule 22 (instruccion -> INT ID SEMICOLON .)
+    FLOAT           reduce using rule 22 (instruccion -> INT ID SEMICOLON .)
+    STRING          reduce using rule 22 (instruccion -> INT ID SEMICOLON .)
+    PRINT           reduce using rule 22 (instruccion -> INT ID SEMICOLON .)
+    ID              reduce using rule 22 (instruccion -> INT ID SEMICOLON .)
+    LPAREN          reduce using rule 22 (instruccion -> INT ID SEMICOLON .)
+    $end            reduce using rule 22 (instruccion -> INT ID SEMICOLON .)
+    RBRACE          reduce using rule 22 (instruccion -> INT ID SEMICOLON .)
+
+
+state 64
+
+    (25) instruccion -> INT asignacion_base SEMICOLON .
+
+    IF              reduce using rule 25 (instruccion -> INT asignacion_base SEMICOLON .)
+    WHILE           reduce using rule 25 (instruccion -> INT asignacion_base SEMICOLON .)
+    FOR             reduce using rule 25 (instruccion -> INT asignacion_base SEMICOLON .)
+    BREAK           reduce using rule 25 (instruccion -> INT asignacion_base SEMICOLON .)
+    CONTINUE        reduce using rule 25 (instruccion -> INT asignacion_base SEMICOLON .)
+    RETURN          reduce using rule 25 (instruccion -> INT asignacion_base SEMICOLON .)
+    INT             reduce using rule 25 (instruccion -> INT asignacion_base SEMICOLON .)
+    FLOAT           reduce using rule 25 (instruccion -> INT asignacion_base SEMICOLON .)
+    STRING          reduce using rule 25 (instruccion -> INT asignacion_base SEMICOLON .)
+    PRINT           reduce using rule 25 (instruccion -> INT asignacion_base SEMICOLON .)
+    ID              reduce using rule 25 (instruccion -> INT asignacion_base SEMICOLON .)
+    LPAREN          reduce using rule 25 (instruccion -> INT asignacion_base SEMICOLON .)
+    $end            reduce using rule 25 (instruccion -> INT asignacion_base SEMICOLON .)
+    RBRACE          reduce using rule 25 (instruccion -> INT asignacion_base SEMICOLON .)
+
+
+state 65
+
+    (20) asignacion_base -> ID EQUAL expression .
+    (38) expression -> expression . PLUS term
+    (39) expression -> expression . MINUS term
+
+    SEMICOLON       reduce using rule 20 (asignacion_base -> ID EQUAL expression .)
+    PLUS            shift and go to state 34
+    MINUS           shift and go to state 35
+
+
+state 66
+
+    (30) decremento -> ID MINUS MINUS . SEMICOLON
+
+    SEMICOLON       shift and go to state 87
+
+
+state 67
+
+    (31) decremento -> ID DECREMENTO SEMICOLON .
+
+    IF              reduce using rule 31 (decremento -> ID DECREMENTO SEMICOLON .)
+    WHILE           reduce using rule 31 (decremento -> ID DECREMENTO SEMICOLON .)
+    FOR             reduce using rule 31 (decremento -> ID DECREMENTO SEMICOLON .)
+    BREAK           reduce using rule 31 (decremento -> ID DECREMENTO SEMICOLON .)
+    CONTINUE        reduce using rule 31 (decremento -> ID DECREMENTO SEMICOLON .)
+    RETURN          reduce using rule 31 (decremento -> ID DECREMENTO SEMICOLON .)
+    INT             reduce using rule 31 (decremento -> ID DECREMENTO SEMICOLON .)
+    FLOAT           reduce using rule 31 (decremento -> ID DECREMENTO SEMICOLON .)
+    STRING          reduce using rule 31 (decremento -> ID DECREMENTO SEMICOLON .)
+    PRINT           reduce using rule 31 (decremento -> ID DECREMENTO SEMICOLON .)
+    ID              reduce using rule 31 (decremento -> ID DECREMENTO SEMICOLON .)
+    LPAREN          reduce using rule 31 (decremento -> ID DECREMENTO SEMICOLON .)
+    $end            reduce using rule 31 (decremento -> ID DECREMENTO SEMICOLON .)
+    RBRACE          reduce using rule 31 (decremento -> ID DECREMENTO SEMICOLON .)
+
+
+state 68
+
+    (23) instruccion -> FLOAT ID SEMICOLON .
+
+    IF              reduce using rule 23 (instruccion -> FLOAT ID SEMICOLON .)
+    WHILE           reduce using rule 23 (instruccion -> FLOAT ID SEMICOLON .)
+    FOR             reduce using rule 23 (instruccion -> FLOAT ID SEMICOLON .)
+    BREAK           reduce using rule 23 (instruccion -> FLOAT ID SEMICOLON .)
+    CONTINUE        reduce using rule 23 (instruccion -> FLOAT ID SEMICOLON .)
+    RETURN          reduce using rule 23 (instruccion -> FLOAT ID SEMICOLON .)
+    INT             reduce using rule 23 (instruccion -> FLOAT ID SEMICOLON .)
+    FLOAT           reduce using rule 23 (instruccion -> FLOAT ID SEMICOLON .)
+    STRING          reduce using rule 23 (instruccion -> FLOAT ID SEMICOLON .)
+    PRINT           reduce using rule 23 (instruccion -> FLOAT ID SEMICOLON .)
+    ID              reduce using rule 23 (instruccion -> FLOAT ID SEMICOLON .)
+    LPAREN          reduce using rule 23 (instruccion -> FLOAT ID SEMICOLON .)
+    $end            reduce using rule 23 (instruccion -> FLOAT ID SEMICOLON .)
+    RBRACE          reduce using rule 23 (instruccion -> FLOAT ID SEMICOLON .)
+
+
+state 69
+
+    (26) instruccion -> FLOAT asignacion_base SEMICOLON .
+
+    IF              reduce using rule 26 (instruccion -> FLOAT asignacion_base SEMICOLON .)
+    WHILE           reduce using rule 26 (instruccion -> FLOAT asignacion_base SEMICOLON .)
+    FOR             reduce using rule 26 (instruccion -> FLOAT asignacion_base SEMICOLON .)
+    BREAK           reduce using rule 26 (instruccion -> FLOAT asignacion_base SEMICOLON .)
+    CONTINUE        reduce using rule 26 (instruccion -> FLOAT asignacion_base SEMICOLON .)
+    RETURN          reduce using rule 26 (instruccion -> FLOAT asignacion_base SEMICOLON .)
+    INT             reduce using rule 26 (instruccion -> FLOAT asignacion_base SEMICOLON .)
+    FLOAT           reduce using rule 26 (instruccion -> FLOAT asignacion_base SEMICOLON .)
+    STRING          reduce using rule 26 (instruccion -> FLOAT asignacion_base SEMICOLON .)
+    PRINT           reduce using rule 26 (instruccion -> FLOAT asignacion_base SEMICOLON .)
+    ID              reduce using rule 26 (instruccion -> FLOAT asignacion_base SEMICOLON .)
+    LPAREN          reduce using rule 26 (instruccion -> FLOAT asignacion_base SEMICOLON .)
+    $end            reduce using rule 26 (instruccion -> FLOAT asignacion_base SEMICOLON .)
+    RBRACE          reduce using rule 26 (instruccion -> FLOAT asignacion_base SEMICOLON .)
+
+
+state 70
+
+    (24) instruccion -> STRING ID SEMICOLON .
+
+    IF              reduce using rule 24 (instruccion -> STRING ID SEMICOLON .)
+    WHILE           reduce using rule 24 (instruccion -> STRING ID SEMICOLON .)
+    FOR             reduce using rule 24 (instruccion -> STRING ID SEMICOLON .)
+    BREAK           reduce using rule 24 (instruccion -> STRING ID SEMICOLON .)
+    CONTINUE        reduce using rule 24 (instruccion -> STRING ID SEMICOLON .)
+    RETURN          reduce using rule 24 (instruccion -> STRING ID SEMICOLON .)
+    INT             reduce using rule 24 (instruccion -> STRING ID SEMICOLON .)
+    FLOAT           reduce using rule 24 (instruccion -> STRING ID SEMICOLON .)
+    STRING          reduce using rule 24 (instruccion -> STRING ID SEMICOLON .)
+    PRINT           reduce using rule 24 (instruccion -> STRING ID SEMICOLON .)
+    ID              reduce using rule 24 (instruccion -> STRING ID SEMICOLON .)
+    LPAREN          reduce using rule 24 (instruccion -> STRING ID SEMICOLON .)
+    $end            reduce using rule 24 (instruccion -> STRING ID SEMICOLON .)
+    RBRACE          reduce using rule 24 (instruccion -> STRING ID SEMICOLON .)
+
+
+state 71
+
+    (27) instruccion -> STRING asignacion_base SEMICOLON .
+
+    IF              reduce using rule 27 (instruccion -> STRING asignacion_base SEMICOLON .)
+    WHILE           reduce using rule 27 (instruccion -> STRING asignacion_base SEMICOLON .)
+    FOR             reduce using rule 27 (instruccion -> STRING asignacion_base SEMICOLON .)
+    BREAK           reduce using rule 27 (instruccion -> STRING asignacion_base SEMICOLON .)
+    CONTINUE        reduce using rule 27 (instruccion -> STRING asignacion_base SEMICOLON .)
+    RETURN          reduce using rule 27 (instruccion -> STRING asignacion_base SEMICOLON .)
+    INT             reduce using rule 27 (instruccion -> STRING asignacion_base SEMICOLON .)
+    FLOAT           reduce using rule 27 (instruccion -> STRING asignacion_base SEMICOLON .)
+    STRING          reduce using rule 27 (instruccion -> STRING asignacion_base SEMICOLON .)
+    PRINT           reduce using rule 27 (instruccion -> STRING asignacion_base SEMICOLON .)
+    ID              reduce using rule 27 (instruccion -> STRING asignacion_base SEMICOLON .)
+    LPAREN          reduce using rule 27 (instruccion -> STRING asignacion_base SEMICOLON .)
+    $end            reduce using rule 27 (instruccion -> STRING asignacion_base SEMICOLON .)
+    RBRACE          reduce using rule 27 (instruccion -> STRING asignacion_base SEMICOLON .)
+
+
+state 72
+
+    (48) instruccion -> PRINT LPAREN expression . RPAREN SEMICOLON
+    (38) expression -> expression . PLUS term
+    (39) expression -> expression . MINUS term
+
+    RPAREN          shift and go to state 88
+    PLUS            shift and go to state 34
+    MINUS           shift and go to state 35
+
+
+state 73
+
+    (41) term -> term TIMES factor .
+
+    TIMES           reduce using rule 41 (term -> term TIMES factor .)
+    DIVIDE          reduce using rule 41 (term -> term TIMES factor .)
+    SEMICOLON       reduce using rule 41 (term -> term TIMES factor .)
+    PLUS            reduce using rule 41 (term -> term TIMES factor .)
+    MINUS           reduce using rule 41 (term -> term TIMES factor .)
+    RPAREN          reduce using rule 41 (term -> term TIMES factor .)
+    GREATER         reduce using rule 41 (term -> term TIMES factor .)
+    LESS            reduce using rule 41 (term -> term TIMES factor .)
+    ISEQUAL         reduce using rule 41 (term -> term TIMES factor .)
+    DISTINCT        reduce using rule 41 (term -> term TIMES factor .)
+
+
+state 74
+
+    (42) term -> term DIVIDE factor .
+
+    TIMES           reduce using rule 42 (term -> term DIVIDE factor .)
+    DIVIDE          reduce using rule 42 (term -> term DIVIDE factor .)
+    SEMICOLON       reduce using rule 42 (term -> term DIVIDE factor .)
+    PLUS            reduce using rule 42 (term -> term DIVIDE factor .)
+    MINUS           reduce using rule 42 (term -> term DIVIDE factor .)
+    RPAREN          reduce using rule 42 (term -> term DIVIDE factor .)
+    GREATER         reduce using rule 42 (term -> term DIVIDE factor .)
+    LESS            reduce using rule 42 (term -> term DIVIDE factor .)
+    ISEQUAL         reduce using rule 42 (term -> term DIVIDE factor .)
+    DISTINCT        reduce using rule 42 (term -> term DIVIDE factor .)
+
+
+state 75
+
+    (4) instruccion -> IF LPAREN condition RPAREN . LBRACE lista_instrucciones RBRACE lista_elif else_opcional
+
+    LBRACE          shift and go to state 89
+
+
+state 76
+
+    (34) condition -> expression GREATER . expression
+    (38) expression -> . expression PLUS term
+    (39) expression -> . expression MINUS term
+    (40) expression -> . term
+    (41) term -> . term TIMES factor
+    (42) term -> . term DIVIDE factor
+    (43) term -> . factor
+    (44) factor -> . ID
+    (45) factor -> . INT
+    (46) factor -> . STRING
+    (47) factor -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 24
+    INT             shift and go to state 25
+    STRING          shift and go to state 26
+    LPAREN          shift and go to state 5
+
+    expression                     shift and go to state 90
+    term                           shift and go to state 19
+    factor                         shift and go to state 20
+
+state 77
+
+    (35) condition -> expression LESS . expression
+    (38) expression -> . expression PLUS term
+    (39) expression -> . expression MINUS term
+    (40) expression -> . term
+    (41) term -> . term TIMES factor
+    (42) term -> . term DIVIDE factor
+    (43) term -> . factor
+    (44) factor -> . ID
+    (45) factor -> . INT
+    (46) factor -> . STRING
+    (47) factor -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 24
+    INT             shift and go to state 25
+    STRING          shift and go to state 26
+    LPAREN          shift and go to state 5
+
+    expression                     shift and go to state 91
+    term                           shift and go to state 19
+    factor                         shift and go to state 20
+
+state 78
+
+    (36) condition -> expression ISEQUAL . expression
+    (38) expression -> . expression PLUS term
+    (39) expression -> . expression MINUS term
+    (40) expression -> . term
+    (41) term -> . term TIMES factor
+    (42) term -> . term DIVIDE factor
+    (43) term -> . factor
+    (44) factor -> . ID
+    (45) factor -> . INT
+    (46) factor -> . STRING
+    (47) factor -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 24
+    INT             shift and go to state 25
+    STRING          shift and go to state 26
+    LPAREN          shift and go to state 5
+
+    expression                     shift and go to state 92
+    term                           shift and go to state 19
+    factor                         shift and go to state 20
+
+state 79
+
+    (37) condition -> expression DISTINCT . expression
+    (38) expression -> . expression PLUS term
+    (39) expression -> . expression MINUS term
+    (40) expression -> . term
+    (41) term -> . term TIMES factor
+    (42) term -> . term DIVIDE factor
+    (43) term -> . factor
+    (44) factor -> . ID
+    (45) factor -> . INT
+    (46) factor -> . STRING
+    (47) factor -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 24
+    INT             shift and go to state 25
+    STRING          shift and go to state 26
+    LPAREN          shift and go to state 5
+
+    expression                     shift and go to state 93
+    term                           shift and go to state 19
+    factor                         shift and go to state 20
+
+state 80
+
+    (9) instruccion -> WHILE LPAREN condition RPAREN . LBRACE lista_instrucciones RBRACE
+
+    LBRACE          shift and go to state 94
+
+
+state 81
+
+    (10) instruccion -> FOR LPAREN declara_o_asigna SEMICOLON . condition SEMICOLON incremento RPAREN LBRACE lista_instrucciones RBRACE
+    (34) condition -> . expression GREATER expression
+    (35) condition -> . expression LESS expression
+    (36) condition -> . expression ISEQUAL expression
+    (37) condition -> . expression DISTINCT expression
+    (38) expression -> . expression PLUS term
+    (39) expression -> . expression MINUS term
+    (40) expression -> . term
+    (41) term -> . term TIMES factor
+    (42) term -> . term DIVIDE factor
+    (43) term -> . factor
+    (44) factor -> . ID
+    (45) factor -> . INT
+    (46) factor -> . STRING
+    (47) factor -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 24
+    INT             shift and go to state 25
+    STRING          shift and go to state 26
+    LPAREN          shift and go to state 5
+
+    condition                      shift and go to state 95
+    expression                     shift and go to state 50
+    term                           shift and go to state 19
+    factor                         shift and go to state 20
+
+state 82
+
+    (11) instruccion -> FOR LPAREN condition RPAREN . LBRACE lista_instrucciones RBRACE
+
+    LBRACE          shift and go to state 96
+
+
+state 83
+
+    (12) declara_o_asigna -> INT asignacion_base .
+
+    SEMICOLON       reduce using rule 12 (declara_o_asigna -> INT asignacion_base .)
+
+
+state 84
+
+    (20) asignacion_base -> ID . EQUAL expression
+
+    EQUAL           shift and go to state 39
+
+
+state 85
+
+    (13) declara_o_asigna -> FLOAT asignacion_base .
+
+    SEMICOLON       reduce using rule 13 (declara_o_asigna -> FLOAT asignacion_base .)
+
+
+state 86
+
+    (14) declara_o_asigna -> STRING asignacion_base .
+
+    SEMICOLON       reduce using rule 14 (declara_o_asigna -> STRING asignacion_base .)
+
+
+state 87
+
+    (30) decremento -> ID MINUS MINUS SEMICOLON .
+
+    IF              reduce using rule 30 (decremento -> ID MINUS MINUS SEMICOLON .)
+    WHILE           reduce using rule 30 (decremento -> ID MINUS MINUS SEMICOLON .)
+    FOR             reduce using rule 30 (decremento -> ID MINUS MINUS SEMICOLON .)
+    BREAK           reduce using rule 30 (decremento -> ID MINUS MINUS SEMICOLON .)
+    CONTINUE        reduce using rule 30 (decremento -> ID MINUS MINUS SEMICOLON .)
+    RETURN          reduce using rule 30 (decremento -> ID MINUS MINUS SEMICOLON .)
+    INT             reduce using rule 30 (decremento -> ID MINUS MINUS SEMICOLON .)
+    FLOAT           reduce using rule 30 (decremento -> ID MINUS MINUS SEMICOLON .)
+    STRING          reduce using rule 30 (decremento -> ID MINUS MINUS SEMICOLON .)
+    PRINT           reduce using rule 30 (decremento -> ID MINUS MINUS SEMICOLON .)
+    ID              reduce using rule 30 (decremento -> ID MINUS MINUS SEMICOLON .)
+    LPAREN          reduce using rule 30 (decremento -> ID MINUS MINUS SEMICOLON .)
+    $end            reduce using rule 30 (decremento -> ID MINUS MINUS SEMICOLON .)
+    RBRACE          reduce using rule 30 (decremento -> ID MINUS MINUS SEMICOLON .)
+
+
+state 88
+
+    (48) instruccion -> PRINT LPAREN expression RPAREN . SEMICOLON
+
+    SEMICOLON       shift and go to state 97
+
+
+state 89
+
+    (4) instruccion -> IF LPAREN condition RPAREN LBRACE . lista_instrucciones RBRACE lista_elif else_opcional
+    (2) lista_instrucciones -> . instruccion lista_instrucciones
+    (3) lista_instrucciones -> . instruccion
+    (4) instruccion -> . IF LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE lista_elif else_opcional
+    (9) instruccion -> . WHILE LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE
+    (10) instruccion -> . FOR LPAREN declara_o_asigna SEMICOLON condition SEMICOLON incremento RPAREN LBRACE lista_instrucciones RBRACE
+    (11) instruccion -> . FOR LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE
+    (16) instruccion -> . BREAK SEMICOLON
+    (17) instruccion -> . CONTINUE SEMICOLON
+    (18) instruccion -> . RETURN expression SEMICOLON
+    (19) instruccion -> . RETURN SEMICOLON
+    (21) instruccion -> . asignacion_base SEMICOLON
+    (22) instruccion -> . INT ID SEMICOLON
+    (23) instruccion -> . FLOAT ID SEMICOLON
+    (24) instruccion -> . STRING ID SEMICOLON
+    (25) instruccion -> . INT asignacion_base SEMICOLON
+    (26) instruccion -> . FLOAT asignacion_base SEMICOLON
+    (27) instruccion -> . STRING asignacion_base SEMICOLON
+    (32) instruccion -> . decremento
+    (33) instruccion -> . expression SEMICOLON
+    (48) instruccion -> . PRINT LPAREN expression RPAREN SEMICOLON
+    (20) asignacion_base -> . ID EQUAL expression
+    (30) decremento -> . ID MINUS MINUS SEMICOLON
+    (31) decremento -> . ID DECREMENTO SEMICOLON
+    (38) expression -> . expression PLUS term
+    (39) expression -> . expression MINUS term
+    (40) expression -> . term
+    (41) term -> . term TIMES factor
+    (42) term -> . term DIVIDE factor
+    (43) term -> . factor
+    (44) factor -> . ID
+    (45) factor -> . INT
+    (46) factor -> . STRING
+    (47) factor -> . LPAREN expression RPAREN
+
+    IF              shift and go to state 4
+    WHILE           shift and go to state 6
+    FOR             shift and go to state 7
+    BREAK           shift and go to state 8
+    CONTINUE        shift and go to state 9
+    RETURN          shift and go to state 10
+    INT             shift and go to state 13
+    FLOAT           shift and go to state 15
+    STRING          shift and go to state 16
+    PRINT           shift and go to state 18
+    ID              shift and go to state 14
+    LPAREN          shift and go to state 5
+
+    lista_instrucciones            shift and go to state 98
+    instruccion                    shift and go to state 3
+    expression                     shift and go to state 11
+    asignacion_base                shift and go to state 12
+    decremento                     shift and go to state 17
+    term                           shift and go to state 19
+    factor                         shift and go to state 20
+
+state 90
+
+    (34) condition -> expression GREATER expression .
+    (38) expression -> expression . PLUS term
+    (39) expression -> expression . MINUS term
+
+    RPAREN          reduce using rule 34 (condition -> expression GREATER expression .)
+    SEMICOLON       reduce using rule 34 (condition -> expression GREATER expression .)
+    PLUS            shift and go to state 34
+    MINUS           shift and go to state 35
+
+
+state 91
+
+    (35) condition -> expression LESS expression .
+    (38) expression -> expression . PLUS term
+    (39) expression -> expression . MINUS term
+
+    RPAREN          reduce using rule 35 (condition -> expression LESS expression .)
+    SEMICOLON       reduce using rule 35 (condition -> expression LESS expression .)
+    PLUS            shift and go to state 34
+    MINUS           shift and go to state 35
+
+
+state 92
+
+    (36) condition -> expression ISEQUAL expression .
+    (38) expression -> expression . PLUS term
+    (39) expression -> expression . MINUS term
+
+    RPAREN          reduce using rule 36 (condition -> expression ISEQUAL expression .)
+    SEMICOLON       reduce using rule 36 (condition -> expression ISEQUAL expression .)
+    PLUS            shift and go to state 34
+    MINUS           shift and go to state 35
+
+
+state 93
+
+    (37) condition -> expression DISTINCT expression .
+    (38) expression -> expression . PLUS term
+    (39) expression -> expression . MINUS term
+
+    RPAREN          reduce using rule 37 (condition -> expression DISTINCT expression .)
+    SEMICOLON       reduce using rule 37 (condition -> expression DISTINCT expression .)
+    PLUS            shift and go to state 34
+    MINUS           shift and go to state 35
+
+
+state 94
+
+    (9) instruccion -> WHILE LPAREN condition RPAREN LBRACE . lista_instrucciones RBRACE
+    (2) lista_instrucciones -> . instruccion lista_instrucciones
+    (3) lista_instrucciones -> . instruccion
+    (4) instruccion -> . IF LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE lista_elif else_opcional
+    (9) instruccion -> . WHILE LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE
+    (10) instruccion -> . FOR LPAREN declara_o_asigna SEMICOLON condition SEMICOLON incremento RPAREN LBRACE lista_instrucciones RBRACE
+    (11) instruccion -> . FOR LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE
+    (16) instruccion -> . BREAK SEMICOLON
+    (17) instruccion -> . CONTINUE SEMICOLON
+    (18) instruccion -> . RETURN expression SEMICOLON
+    (19) instruccion -> . RETURN SEMICOLON
+    (21) instruccion -> . asignacion_base SEMICOLON
+    (22) instruccion -> . INT ID SEMICOLON
+    (23) instruccion -> . FLOAT ID SEMICOLON
+    (24) instruccion -> . STRING ID SEMICOLON
+    (25) instruccion -> . INT asignacion_base SEMICOLON
+    (26) instruccion -> . FLOAT asignacion_base SEMICOLON
+    (27) instruccion -> . STRING asignacion_base SEMICOLON
+    (32) instruccion -> . decremento
+    (33) instruccion -> . expression SEMICOLON
+    (48) instruccion -> . PRINT LPAREN expression RPAREN SEMICOLON
+    (20) asignacion_base -> . ID EQUAL expression
+    (30) decremento -> . ID MINUS MINUS SEMICOLON
+    (31) decremento -> . ID DECREMENTO SEMICOLON
+    (38) expression -> . expression PLUS term
+    (39) expression -> . expression MINUS term
+    (40) expression -> . term
+    (41) term -> . term TIMES factor
+    (42) term -> . term DIVIDE factor
+    (43) term -> . factor
+    (44) factor -> . ID
+    (45) factor -> . INT
+    (46) factor -> . STRING
+    (47) factor -> . LPAREN expression RPAREN
+
+    IF              shift and go to state 4
+    WHILE           shift and go to state 6
+    FOR             shift and go to state 7
+    BREAK           shift and go to state 8
+    CONTINUE        shift and go to state 9
+    RETURN          shift and go to state 10
+    INT             shift and go to state 13
+    FLOAT           shift and go to state 15
+    STRING          shift and go to state 16
+    PRINT           shift and go to state 18
+    ID              shift and go to state 14
+    LPAREN          shift and go to state 5
+
+    lista_instrucciones            shift and go to state 99
+    instruccion                    shift and go to state 3
+    expression                     shift and go to state 11
+    asignacion_base                shift and go to state 12
+    decremento                     shift and go to state 17
+    term                           shift and go to state 19
+    factor                         shift and go to state 20
+
+state 95
+
+    (10) instruccion -> FOR LPAREN declara_o_asigna SEMICOLON condition . SEMICOLON incremento RPAREN LBRACE lista_instrucciones RBRACE
+
+    SEMICOLON       shift and go to state 100
+
+
+state 96
+
+    (11) instruccion -> FOR LPAREN condition RPAREN LBRACE . lista_instrucciones RBRACE
+    (2) lista_instrucciones -> . instruccion lista_instrucciones
+    (3) lista_instrucciones -> . instruccion
+    (4) instruccion -> . IF LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE lista_elif else_opcional
+    (9) instruccion -> . WHILE LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE
+    (10) instruccion -> . FOR LPAREN declara_o_asigna SEMICOLON condition SEMICOLON incremento RPAREN LBRACE lista_instrucciones RBRACE
+    (11) instruccion -> . FOR LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE
+    (16) instruccion -> . BREAK SEMICOLON
+    (17) instruccion -> . CONTINUE SEMICOLON
+    (18) instruccion -> . RETURN expression SEMICOLON
+    (19) instruccion -> . RETURN SEMICOLON
+    (21) instruccion -> . asignacion_base SEMICOLON
+    (22) instruccion -> . INT ID SEMICOLON
+    (23) instruccion -> . FLOAT ID SEMICOLON
+    (24) instruccion -> . STRING ID SEMICOLON
+    (25) instruccion -> . INT asignacion_base SEMICOLON
+    (26) instruccion -> . FLOAT asignacion_base SEMICOLON
+    (27) instruccion -> . STRING asignacion_base SEMICOLON
+    (32) instruccion -> . decremento
+    (33) instruccion -> . expression SEMICOLON
+    (48) instruccion -> . PRINT LPAREN expression RPAREN SEMICOLON
+    (20) asignacion_base -> . ID EQUAL expression
+    (30) decremento -> . ID MINUS MINUS SEMICOLON
+    (31) decremento -> . ID DECREMENTO SEMICOLON
+    (38) expression -> . expression PLUS term
+    (39) expression -> . expression MINUS term
+    (40) expression -> . term
+    (41) term -> . term TIMES factor
+    (42) term -> . term DIVIDE factor
+    (43) term -> . factor
+    (44) factor -> . ID
+    (45) factor -> . INT
+    (46) factor -> . STRING
+    (47) factor -> . LPAREN expression RPAREN
+
+    IF              shift and go to state 4
+    WHILE           shift and go to state 6
+    FOR             shift and go to state 7
+    BREAK           shift and go to state 8
+    CONTINUE        shift and go to state 9
+    RETURN          shift and go to state 10
+    INT             shift and go to state 13
+    FLOAT           shift and go to state 15
+    STRING          shift and go to state 16
+    PRINT           shift and go to state 18
+    ID              shift and go to state 14
+    LPAREN          shift and go to state 5
+
+    lista_instrucciones            shift and go to state 101
+    instruccion                    shift and go to state 3
+    expression                     shift and go to state 11
+    asignacion_base                shift and go to state 12
+    decremento                     shift and go to state 17
+    term                           shift and go to state 19
+    factor                         shift and go to state 20
+
+state 97
+
+    (48) instruccion -> PRINT LPAREN expression RPAREN SEMICOLON .
+
+    IF              reduce using rule 48 (instruccion -> PRINT LPAREN expression RPAREN SEMICOLON .)
+    WHILE           reduce using rule 48 (instruccion -> PRINT LPAREN expression RPAREN SEMICOLON .)
+    FOR             reduce using rule 48 (instruccion -> PRINT LPAREN expression RPAREN SEMICOLON .)
+    BREAK           reduce using rule 48 (instruccion -> PRINT LPAREN expression RPAREN SEMICOLON .)
+    CONTINUE        reduce using rule 48 (instruccion -> PRINT LPAREN expression RPAREN SEMICOLON .)
+    RETURN          reduce using rule 48 (instruccion -> PRINT LPAREN expression RPAREN SEMICOLON .)
+    INT             reduce using rule 48 (instruccion -> PRINT LPAREN expression RPAREN SEMICOLON .)
+    FLOAT           reduce using rule 48 (instruccion -> PRINT LPAREN expression RPAREN SEMICOLON .)
+    STRING          reduce using rule 48 (instruccion -> PRINT LPAREN expression RPAREN SEMICOLON .)
+    PRINT           reduce using rule 48 (instruccion -> PRINT LPAREN expression RPAREN SEMICOLON .)
+    ID              reduce using rule 48 (instruccion -> PRINT LPAREN expression RPAREN SEMICOLON .)
+    LPAREN          reduce using rule 48 (instruccion -> PRINT LPAREN expression RPAREN SEMICOLON .)
+    $end            reduce using rule 48 (instruccion -> PRINT LPAREN expression RPAREN SEMICOLON .)
+    RBRACE          reduce using rule 48 (instruccion -> PRINT LPAREN expression RPAREN SEMICOLON .)
+
+
+state 98
+
+    (4) instruccion -> IF LPAREN condition RPAREN LBRACE lista_instrucciones . RBRACE lista_elif else_opcional
+
+    RBRACE          shift and go to state 102
+
+
+state 99
+
+    (9) instruccion -> WHILE LPAREN condition RPAREN LBRACE lista_instrucciones . RBRACE
+
+    RBRACE          shift and go to state 103
+
+
+state 100
+
+    (10) instruccion -> FOR LPAREN declara_o_asigna SEMICOLON condition SEMICOLON . incremento RPAREN LBRACE lista_instrucciones RBRACE
+    (28) incremento -> . ID INCREMENTO SEMICOLON
+    (29) incremento -> . ID PLUS PLUS SEMICOLON
+
+    ID              shift and go to state 105
+
+    incremento                     shift and go to state 104
+
+state 101
+
+    (11) instruccion -> FOR LPAREN condition RPAREN LBRACE lista_instrucciones . RBRACE
+
+    RBRACE          shift and go to state 106
+
+
+state 102
+
+    (4) instruccion -> IF LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE . lista_elif else_opcional
+    (5) lista_elif -> . ELIF LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE lista_elif
+    (6) lista_elif -> . empty
+    (49) empty -> .
+
+    ELIF            shift and go to state 108
+    ELSE            reduce using rule 49 (empty -> .)
+    IF              reduce using rule 49 (empty -> .)
+    WHILE           reduce using rule 49 (empty -> .)
+    FOR             reduce using rule 49 (empty -> .)
+    BREAK           reduce using rule 49 (empty -> .)
+    CONTINUE        reduce using rule 49 (empty -> .)
+    RETURN          reduce using rule 49 (empty -> .)
+    INT             reduce using rule 49 (empty -> .)
+    FLOAT           reduce using rule 49 (empty -> .)
+    STRING          reduce using rule 49 (empty -> .)
+    PRINT           reduce using rule 49 (empty -> .)
+    ID              reduce using rule 49 (empty -> .)
+    LPAREN          reduce using rule 49 (empty -> .)
+    $end            reduce using rule 49 (empty -> .)
+    RBRACE          reduce using rule 49 (empty -> .)
+
+    lista_elif                     shift and go to state 107
+    empty                          shift and go to state 109
+
+state 103
+
+    (9) instruccion -> WHILE LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE .
+
+    IF              reduce using rule 9 (instruccion -> WHILE LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE .)
+    WHILE           reduce using rule 9 (instruccion -> WHILE LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE .)
+    FOR             reduce using rule 9 (instruccion -> WHILE LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE .)
+    BREAK           reduce using rule 9 (instruccion -> WHILE LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE .)
+    CONTINUE        reduce using rule 9 (instruccion -> WHILE LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE .)
+    RETURN          reduce using rule 9 (instruccion -> WHILE LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE .)
+    INT             reduce using rule 9 (instruccion -> WHILE LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE .)
+    FLOAT           reduce using rule 9 (instruccion -> WHILE LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE .)
+    STRING          reduce using rule 9 (instruccion -> WHILE LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE .)
+    PRINT           reduce using rule 9 (instruccion -> WHILE LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE .)
+    ID              reduce using rule 9 (instruccion -> WHILE LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE .)
+    LPAREN          reduce using rule 9 (instruccion -> WHILE LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE .)
+    $end            reduce using rule 9 (instruccion -> WHILE LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE .)
+    RBRACE          reduce using rule 9 (instruccion -> WHILE LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE .)
+
+
+state 104
+
+    (10) instruccion -> FOR LPAREN declara_o_asigna SEMICOLON condition SEMICOLON incremento . RPAREN LBRACE lista_instrucciones RBRACE
+
+    RPAREN          shift and go to state 110
+
+
+state 105
+
+    (28) incremento -> ID . INCREMENTO SEMICOLON
+    (29) incremento -> ID . PLUS PLUS SEMICOLON
+
+    INCREMENTO      shift and go to state 111
+    PLUS            shift and go to state 112
+
+
+state 106
+
+    (11) instruccion -> FOR LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE .
+
+    IF              reduce using rule 11 (instruccion -> FOR LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE .)
+    WHILE           reduce using rule 11 (instruccion -> FOR LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE .)
+    FOR             reduce using rule 11 (instruccion -> FOR LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE .)
+    BREAK           reduce using rule 11 (instruccion -> FOR LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE .)
+    CONTINUE        reduce using rule 11 (instruccion -> FOR LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE .)
+    RETURN          reduce using rule 11 (instruccion -> FOR LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE .)
+    INT             reduce using rule 11 (instruccion -> FOR LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE .)
+    FLOAT           reduce using rule 11 (instruccion -> FOR LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE .)
+    STRING          reduce using rule 11 (instruccion -> FOR LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE .)
+    PRINT           reduce using rule 11 (instruccion -> FOR LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE .)
+    ID              reduce using rule 11 (instruccion -> FOR LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE .)
+    LPAREN          reduce using rule 11 (instruccion -> FOR LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE .)
+    $end            reduce using rule 11 (instruccion -> FOR LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE .)
+    RBRACE          reduce using rule 11 (instruccion -> FOR LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE .)
+
+
+state 107
+
+    (4) instruccion -> IF LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE lista_elif . else_opcional
+    (7) else_opcional -> . ELSE LBRACE lista_instrucciones RBRACE
+    (8) else_opcional -> . empty
+    (49) empty -> .
+
+    ELSE            shift and go to state 114
+    IF              reduce using rule 49 (empty -> .)
+    WHILE           reduce using rule 49 (empty -> .)
+    FOR             reduce using rule 49 (empty -> .)
+    BREAK           reduce using rule 49 (empty -> .)
+    CONTINUE        reduce using rule 49 (empty -> .)
+    RETURN          reduce using rule 49 (empty -> .)
+    INT             reduce using rule 49 (empty -> .)
+    FLOAT           reduce using rule 49 (empty -> .)
+    STRING          reduce using rule 49 (empty -> .)
+    PRINT           reduce using rule 49 (empty -> .)
+    ID              reduce using rule 49 (empty -> .)
+    LPAREN          reduce using rule 49 (empty -> .)
+    $end            reduce using rule 49 (empty -> .)
+    RBRACE          reduce using rule 49 (empty -> .)
+
+    else_opcional                  shift and go to state 113
+    empty                          shift and go to state 115
+
+state 108
+
+    (5) lista_elif -> ELIF . LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE lista_elif
+
+    LPAREN          shift and go to state 116
+
+
+state 109
+
+    (6) lista_elif -> empty .
+
+    ELSE            reduce using rule 6 (lista_elif -> empty .)
+    IF              reduce using rule 6 (lista_elif -> empty .)
+    WHILE           reduce using rule 6 (lista_elif -> empty .)
+    FOR             reduce using rule 6 (lista_elif -> empty .)
+    BREAK           reduce using rule 6 (lista_elif -> empty .)
+    CONTINUE        reduce using rule 6 (lista_elif -> empty .)
+    RETURN          reduce using rule 6 (lista_elif -> empty .)
+    INT             reduce using rule 6 (lista_elif -> empty .)
+    FLOAT           reduce using rule 6 (lista_elif -> empty .)
+    STRING          reduce using rule 6 (lista_elif -> empty .)
+    PRINT           reduce using rule 6 (lista_elif -> empty .)
+    ID              reduce using rule 6 (lista_elif -> empty .)
+    LPAREN          reduce using rule 6 (lista_elif -> empty .)
+    $end            reduce using rule 6 (lista_elif -> empty .)
+    RBRACE          reduce using rule 6 (lista_elif -> empty .)
+
+
+state 110
+
+    (10) instruccion -> FOR LPAREN declara_o_asigna SEMICOLON condition SEMICOLON incremento RPAREN . LBRACE lista_instrucciones RBRACE
+
+    LBRACE          shift and go to state 117
+
+
+state 111
+
+    (28) incremento -> ID INCREMENTO . SEMICOLON
+
+    SEMICOLON       shift and go to state 118
+
+
+state 112
+
+    (29) incremento -> ID PLUS . PLUS SEMICOLON
+
+    PLUS            shift and go to state 119
+
+
+state 113
+
+    (4) instruccion -> IF LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE lista_elif else_opcional .
+
+    IF              reduce using rule 4 (instruccion -> IF LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE lista_elif else_opcional .)
+    WHILE           reduce using rule 4 (instruccion -> IF LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE lista_elif else_opcional .)
+    FOR             reduce using rule 4 (instruccion -> IF LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE lista_elif else_opcional .)
+    BREAK           reduce using rule 4 (instruccion -> IF LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE lista_elif else_opcional .)
+    CONTINUE        reduce using rule 4 (instruccion -> IF LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE lista_elif else_opcional .)
+    RETURN          reduce using rule 4 (instruccion -> IF LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE lista_elif else_opcional .)
+    INT             reduce using rule 4 (instruccion -> IF LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE lista_elif else_opcional .)
+    FLOAT           reduce using rule 4 (instruccion -> IF LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE lista_elif else_opcional .)
+    STRING          reduce using rule 4 (instruccion -> IF LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE lista_elif else_opcional .)
+    PRINT           reduce using rule 4 (instruccion -> IF LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE lista_elif else_opcional .)
+    ID              reduce using rule 4 (instruccion -> IF LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE lista_elif else_opcional .)
+    LPAREN          reduce using rule 4 (instruccion -> IF LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE lista_elif else_opcional .)
+    $end            reduce using rule 4 (instruccion -> IF LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE lista_elif else_opcional .)
+    RBRACE          reduce using rule 4 (instruccion -> IF LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE lista_elif else_opcional .)
+
+
+state 114
+
+    (7) else_opcional -> ELSE . LBRACE lista_instrucciones RBRACE
+
+    LBRACE          shift and go to state 120
+
+
+state 115
+
+    (8) else_opcional -> empty .
+
+    IF              reduce using rule 8 (else_opcional -> empty .)
+    WHILE           reduce using rule 8 (else_opcional -> empty .)
+    FOR             reduce using rule 8 (else_opcional -> empty .)
+    BREAK           reduce using rule 8 (else_opcional -> empty .)
+    CONTINUE        reduce using rule 8 (else_opcional -> empty .)
+    RETURN          reduce using rule 8 (else_opcional -> empty .)
+    INT             reduce using rule 8 (else_opcional -> empty .)
+    FLOAT           reduce using rule 8 (else_opcional -> empty .)
+    STRING          reduce using rule 8 (else_opcional -> empty .)
+    PRINT           reduce using rule 8 (else_opcional -> empty .)
+    ID              reduce using rule 8 (else_opcional -> empty .)
+    LPAREN          reduce using rule 8 (else_opcional -> empty .)
+    $end            reduce using rule 8 (else_opcional -> empty .)
+    RBRACE          reduce using rule 8 (else_opcional -> empty .)
+
+
+state 116
+
+    (5) lista_elif -> ELIF LPAREN . condition RPAREN LBRACE lista_instrucciones RBRACE lista_elif
+    (34) condition -> . expression GREATER expression
+    (35) condition -> . expression LESS expression
+    (36) condition -> . expression ISEQUAL expression
+    (37) condition -> . expression DISTINCT expression
+    (38) expression -> . expression PLUS term
+    (39) expression -> . expression MINUS term
+    (40) expression -> . term
+    (41) term -> . term TIMES factor
+    (42) term -> . term DIVIDE factor
+    (43) term -> . factor
+    (44) factor -> . ID
+    (45) factor -> . INT
+    (46) factor -> . STRING
+    (47) factor -> . LPAREN expression RPAREN
+
+    ID              shift and go to state 24
+    INT             shift and go to state 25
+    STRING          shift and go to state 26
+    LPAREN          shift and go to state 5
+
+    condition                      shift and go to state 121
+    expression                     shift and go to state 50
+    term                           shift and go to state 19
+    factor                         shift and go to state 20
+
+state 117
+
+    (10) instruccion -> FOR LPAREN declara_o_asigna SEMICOLON condition SEMICOLON incremento RPAREN LBRACE . lista_instrucciones RBRACE
+    (2) lista_instrucciones -> . instruccion lista_instrucciones
+    (3) lista_instrucciones -> . instruccion
+    (4) instruccion -> . IF LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE lista_elif else_opcional
+    (9) instruccion -> . WHILE LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE
+    (10) instruccion -> . FOR LPAREN declara_o_asigna SEMICOLON condition SEMICOLON incremento RPAREN LBRACE lista_instrucciones RBRACE
+    (11) instruccion -> . FOR LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE
+    (16) instruccion -> . BREAK SEMICOLON
+    (17) instruccion -> . CONTINUE SEMICOLON
+    (18) instruccion -> . RETURN expression SEMICOLON
+    (19) instruccion -> . RETURN SEMICOLON
+    (21) instruccion -> . asignacion_base SEMICOLON
+    (22) instruccion -> . INT ID SEMICOLON
+    (23) instruccion -> . FLOAT ID SEMICOLON
+    (24) instruccion -> . STRING ID SEMICOLON
+    (25) instruccion -> . INT asignacion_base SEMICOLON
+    (26) instruccion -> . FLOAT asignacion_base SEMICOLON
+    (27) instruccion -> . STRING asignacion_base SEMICOLON
+    (32) instruccion -> . decremento
+    (33) instruccion -> . expression SEMICOLON
+    (48) instruccion -> . PRINT LPAREN expression RPAREN SEMICOLON
+    (20) asignacion_base -> . ID EQUAL expression
+    (30) decremento -> . ID MINUS MINUS SEMICOLON
+    (31) decremento -> . ID DECREMENTO SEMICOLON
+    (38) expression -> . expression PLUS term
+    (39) expression -> . expression MINUS term
+    (40) expression -> . term
+    (41) term -> . term TIMES factor
+    (42) term -> . term DIVIDE factor
+    (43) term -> . factor
+    (44) factor -> . ID
+    (45) factor -> . INT
+    (46) factor -> . STRING
+    (47) factor -> . LPAREN expression RPAREN
+
+    IF              shift and go to state 4
+    WHILE           shift and go to state 6
+    FOR             shift and go to state 7
+    BREAK           shift and go to state 8
+    CONTINUE        shift and go to state 9
+    RETURN          shift and go to state 10
+    INT             shift and go to state 13
+    FLOAT           shift and go to state 15
+    STRING          shift and go to state 16
+    PRINT           shift and go to state 18
+    ID              shift and go to state 14
+    LPAREN          shift and go to state 5
+
+    lista_instrucciones            shift and go to state 122
+    instruccion                    shift and go to state 3
+    expression                     shift and go to state 11
+    asignacion_base                shift and go to state 12
+    decremento                     shift and go to state 17
+    term                           shift and go to state 19
+    factor                         shift and go to state 20
+
+state 118
+
+    (28) incremento -> ID INCREMENTO SEMICOLON .
+
+    RPAREN          reduce using rule 28 (incremento -> ID INCREMENTO SEMICOLON .)
+
+
+state 119
+
+    (29) incremento -> ID PLUS PLUS . SEMICOLON
+
+    SEMICOLON       shift and go to state 123
+
+
+state 120
+
+    (7) else_opcional -> ELSE LBRACE . lista_instrucciones RBRACE
+    (2) lista_instrucciones -> . instruccion lista_instrucciones
+    (3) lista_instrucciones -> . instruccion
+    (4) instruccion -> . IF LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE lista_elif else_opcional
+    (9) instruccion -> . WHILE LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE
+    (10) instruccion -> . FOR LPAREN declara_o_asigna SEMICOLON condition SEMICOLON incremento RPAREN LBRACE lista_instrucciones RBRACE
+    (11) instruccion -> . FOR LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE
+    (16) instruccion -> . BREAK SEMICOLON
+    (17) instruccion -> . CONTINUE SEMICOLON
+    (18) instruccion -> . RETURN expression SEMICOLON
+    (19) instruccion -> . RETURN SEMICOLON
+    (21) instruccion -> . asignacion_base SEMICOLON
+    (22) instruccion -> . INT ID SEMICOLON
+    (23) instruccion -> . FLOAT ID SEMICOLON
+    (24) instruccion -> . STRING ID SEMICOLON
+    (25) instruccion -> . INT asignacion_base SEMICOLON
+    (26) instruccion -> . FLOAT asignacion_base SEMICOLON
+    (27) instruccion -> . STRING asignacion_base SEMICOLON
+    (32) instruccion -> . decremento
+    (33) instruccion -> . expression SEMICOLON
+    (48) instruccion -> . PRINT LPAREN expression RPAREN SEMICOLON
+    (20) asignacion_base -> . ID EQUAL expression
+    (30) decremento -> . ID MINUS MINUS SEMICOLON
+    (31) decremento -> . ID DECREMENTO SEMICOLON
+    (38) expression -> . expression PLUS term
+    (39) expression -> . expression MINUS term
+    (40) expression -> . term
+    (41) term -> . term TIMES factor
+    (42) term -> . term DIVIDE factor
+    (43) term -> . factor
+    (44) factor -> . ID
+    (45) factor -> . INT
+    (46) factor -> . STRING
+    (47) factor -> . LPAREN expression RPAREN
+
+    IF              shift and go to state 4
+    WHILE           shift and go to state 6
+    FOR             shift and go to state 7
+    BREAK           shift and go to state 8
+    CONTINUE        shift and go to state 9
+    RETURN          shift and go to state 10
+    INT             shift and go to state 13
+    FLOAT           shift and go to state 15
+    STRING          shift and go to state 16
+    PRINT           shift and go to state 18
+    ID              shift and go to state 14
+    LPAREN          shift and go to state 5
+
+    lista_instrucciones            shift and go to state 124
+    instruccion                    shift and go to state 3
+    expression                     shift and go to state 11
+    asignacion_base                shift and go to state 12
+    decremento                     shift and go to state 17
+    term                           shift and go to state 19
+    factor                         shift and go to state 20
+
+state 121
+
+    (5) lista_elif -> ELIF LPAREN condition . RPAREN LBRACE lista_instrucciones RBRACE lista_elif
+
+    RPAREN          shift and go to state 125
+
+
+state 122
+
+    (10) instruccion -> FOR LPAREN declara_o_asigna SEMICOLON condition SEMICOLON incremento RPAREN LBRACE lista_instrucciones . RBRACE
+
+    RBRACE          shift and go to state 126
+
+
+state 123
+
+    (29) incremento -> ID PLUS PLUS SEMICOLON .
+
+    RPAREN          reduce using rule 29 (incremento -> ID PLUS PLUS SEMICOLON .)
+
+
+state 124
+
+    (7) else_opcional -> ELSE LBRACE lista_instrucciones . RBRACE
+
+    RBRACE          shift and go to state 127
+
+
+state 125
+
+    (5) lista_elif -> ELIF LPAREN condition RPAREN . LBRACE lista_instrucciones RBRACE lista_elif
+
+    LBRACE          shift and go to state 128
+
+
+state 126
+
+    (10) instruccion -> FOR LPAREN declara_o_asigna SEMICOLON condition SEMICOLON incremento RPAREN LBRACE lista_instrucciones RBRACE .
+
+    IF              reduce using rule 10 (instruccion -> FOR LPAREN declara_o_asigna SEMICOLON condition SEMICOLON incremento RPAREN LBRACE lista_instrucciones RBRACE .)
+    WHILE           reduce using rule 10 (instruccion -> FOR LPAREN declara_o_asigna SEMICOLON condition SEMICOLON incremento RPAREN LBRACE lista_instrucciones RBRACE .)
+    FOR             reduce using rule 10 (instruccion -> FOR LPAREN declara_o_asigna SEMICOLON condition SEMICOLON incremento RPAREN LBRACE lista_instrucciones RBRACE .)
+    BREAK           reduce using rule 10 (instruccion -> FOR LPAREN declara_o_asigna SEMICOLON condition SEMICOLON incremento RPAREN LBRACE lista_instrucciones RBRACE .)
+    CONTINUE        reduce using rule 10 (instruccion -> FOR LPAREN declara_o_asigna SEMICOLON condition SEMICOLON incremento RPAREN LBRACE lista_instrucciones RBRACE .)
+    RETURN          reduce using rule 10 (instruccion -> FOR LPAREN declara_o_asigna SEMICOLON condition SEMICOLON incremento RPAREN LBRACE lista_instrucciones RBRACE .)
+    INT             reduce using rule 10 (instruccion -> FOR LPAREN declara_o_asigna SEMICOLON condition SEMICOLON incremento RPAREN LBRACE lista_instrucciones RBRACE .)
+    FLOAT           reduce using rule 10 (instruccion -> FOR LPAREN declara_o_asigna SEMICOLON condition SEMICOLON incremento RPAREN LBRACE lista_instrucciones RBRACE .)
+    STRING          reduce using rule 10 (instruccion -> FOR LPAREN declara_o_asigna SEMICOLON condition SEMICOLON incremento RPAREN LBRACE lista_instrucciones RBRACE .)
+    PRINT           reduce using rule 10 (instruccion -> FOR LPAREN declara_o_asigna SEMICOLON condition SEMICOLON incremento RPAREN LBRACE lista_instrucciones RBRACE .)
+    ID              reduce using rule 10 (instruccion -> FOR LPAREN declara_o_asigna SEMICOLON condition SEMICOLON incremento RPAREN LBRACE lista_instrucciones RBRACE .)
+    LPAREN          reduce using rule 10 (instruccion -> FOR LPAREN declara_o_asigna SEMICOLON condition SEMICOLON incremento RPAREN LBRACE lista_instrucciones RBRACE .)
+    $end            reduce using rule 10 (instruccion -> FOR LPAREN declara_o_asigna SEMICOLON condition SEMICOLON incremento RPAREN LBRACE lista_instrucciones RBRACE .)
+    RBRACE          reduce using rule 10 (instruccion -> FOR LPAREN declara_o_asigna SEMICOLON condition SEMICOLON incremento RPAREN LBRACE lista_instrucciones RBRACE .)
+
+
+state 127
+
+    (7) else_opcional -> ELSE LBRACE lista_instrucciones RBRACE .
+
+    IF              reduce using rule 7 (else_opcional -> ELSE LBRACE lista_instrucciones RBRACE .)
+    WHILE           reduce using rule 7 (else_opcional -> ELSE LBRACE lista_instrucciones RBRACE .)
+    FOR             reduce using rule 7 (else_opcional -> ELSE LBRACE lista_instrucciones RBRACE .)
+    BREAK           reduce using rule 7 (else_opcional -> ELSE LBRACE lista_instrucciones RBRACE .)
+    CONTINUE        reduce using rule 7 (else_opcional -> ELSE LBRACE lista_instrucciones RBRACE .)
+    RETURN          reduce using rule 7 (else_opcional -> ELSE LBRACE lista_instrucciones RBRACE .)
+    INT             reduce using rule 7 (else_opcional -> ELSE LBRACE lista_instrucciones RBRACE .)
+    FLOAT           reduce using rule 7 (else_opcional -> ELSE LBRACE lista_instrucciones RBRACE .)
+    STRING          reduce using rule 7 (else_opcional -> ELSE LBRACE lista_instrucciones RBRACE .)
+    PRINT           reduce using rule 7 (else_opcional -> ELSE LBRACE lista_instrucciones RBRACE .)
+    ID              reduce using rule 7 (else_opcional -> ELSE LBRACE lista_instrucciones RBRACE .)
+    LPAREN          reduce using rule 7 (else_opcional -> ELSE LBRACE lista_instrucciones RBRACE .)
+    $end            reduce using rule 7 (else_opcional -> ELSE LBRACE lista_instrucciones RBRACE .)
+    RBRACE          reduce using rule 7 (else_opcional -> ELSE LBRACE lista_instrucciones RBRACE .)
+
+
+state 128
+
+    (5) lista_elif -> ELIF LPAREN condition RPAREN LBRACE . lista_instrucciones RBRACE lista_elif
+    (2) lista_instrucciones -> . instruccion lista_instrucciones
+    (3) lista_instrucciones -> . instruccion
+    (4) instruccion -> . IF LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE lista_elif else_opcional
+    (9) instruccion -> . WHILE LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE
+    (10) instruccion -> . FOR LPAREN declara_o_asigna SEMICOLON condition SEMICOLON incremento RPAREN LBRACE lista_instrucciones RBRACE
+    (11) instruccion -> . FOR LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE
+    (16) instruccion -> . BREAK SEMICOLON
+    (17) instruccion -> . CONTINUE SEMICOLON
+    (18) instruccion -> . RETURN expression SEMICOLON
+    (19) instruccion -> . RETURN SEMICOLON
+    (21) instruccion -> . asignacion_base SEMICOLON
+    (22) instruccion -> . INT ID SEMICOLON
+    (23) instruccion -> . FLOAT ID SEMICOLON
+    (24) instruccion -> . STRING ID SEMICOLON
+    (25) instruccion -> . INT asignacion_base SEMICOLON
+    (26) instruccion -> . FLOAT asignacion_base SEMICOLON
+    (27) instruccion -> . STRING asignacion_base SEMICOLON
+    (32) instruccion -> . decremento
+    (33) instruccion -> . expression SEMICOLON
+    (48) instruccion -> . PRINT LPAREN expression RPAREN SEMICOLON
+    (20) asignacion_base -> . ID EQUAL expression
+    (30) decremento -> . ID MINUS MINUS SEMICOLON
+    (31) decremento -> . ID DECREMENTO SEMICOLON
+    (38) expression -> . expression PLUS term
+    (39) expression -> . expression MINUS term
+    (40) expression -> . term
+    (41) term -> . term TIMES factor
+    (42) term -> . term DIVIDE factor
+    (43) term -> . factor
+    (44) factor -> . ID
+    (45) factor -> . INT
+    (46) factor -> . STRING
+    (47) factor -> . LPAREN expression RPAREN
+
+    IF              shift and go to state 4
+    WHILE           shift and go to state 6
+    FOR             shift and go to state 7
+    BREAK           shift and go to state 8
+    CONTINUE        shift and go to state 9
+    RETURN          shift and go to state 10
+    INT             shift and go to state 13
+    FLOAT           shift and go to state 15
+    STRING          shift and go to state 16
+    PRINT           shift and go to state 18
+    ID              shift and go to state 14
+    LPAREN          shift and go to state 5
+
+    lista_instrucciones            shift and go to state 129
+    instruccion                    shift and go to state 3
+    expression                     shift and go to state 11
+    asignacion_base                shift and go to state 12
+    decremento                     shift and go to state 17
+    term                           shift and go to state 19
+    factor                         shift and go to state 20
+
+state 129
+
+    (5) lista_elif -> ELIF LPAREN condition RPAREN LBRACE lista_instrucciones . RBRACE lista_elif
+
+    RBRACE          shift and go to state 130
+
+
+state 130
+
+    (5) lista_elif -> ELIF LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE . lista_elif
+    (5) lista_elif -> . ELIF LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE lista_elif
+    (6) lista_elif -> . empty
+    (49) empty -> .
+
+    ELIF            shift and go to state 108
+    ELSE            reduce using rule 49 (empty -> .)
+    IF              reduce using rule 49 (empty -> .)
+    WHILE           reduce using rule 49 (empty -> .)
+    FOR             reduce using rule 49 (empty -> .)
+    BREAK           reduce using rule 49 (empty -> .)
+    CONTINUE        reduce using rule 49 (empty -> .)
+    RETURN          reduce using rule 49 (empty -> .)
+    INT             reduce using rule 49 (empty -> .)
+    FLOAT           reduce using rule 49 (empty -> .)
+    STRING          reduce using rule 49 (empty -> .)
+    PRINT           reduce using rule 49 (empty -> .)
+    ID              reduce using rule 49 (empty -> .)
+    LPAREN          reduce using rule 49 (empty -> .)
+    $end            reduce using rule 49 (empty -> .)
+    RBRACE          reduce using rule 49 (empty -> .)
+
+    lista_elif                     shift and go to state 131
+    empty                          shift and go to state 109
+
+state 131
+
+    (5) lista_elif -> ELIF LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE lista_elif .
+
+    ELSE            reduce using rule 5 (lista_elif -> ELIF LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE lista_elif .)
+    IF              reduce using rule 5 (lista_elif -> ELIF LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE lista_elif .)
+    WHILE           reduce using rule 5 (lista_elif -> ELIF LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE lista_elif .)
+    FOR             reduce using rule 5 (lista_elif -> ELIF LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE lista_elif .)
+    BREAK           reduce using rule 5 (lista_elif -> ELIF LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE lista_elif .)
+    CONTINUE        reduce using rule 5 (lista_elif -> ELIF LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE lista_elif .)
+    RETURN          reduce using rule 5 (lista_elif -> ELIF LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE lista_elif .)
+    INT             reduce using rule 5 (lista_elif -> ELIF LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE lista_elif .)
+    FLOAT           reduce using rule 5 (lista_elif -> ELIF LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE lista_elif .)
+    STRING          reduce using rule 5 (lista_elif -> ELIF LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE lista_elif .)
+    PRINT           reduce using rule 5 (lista_elif -> ELIF LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE lista_elif .)
+    ID              reduce using rule 5 (lista_elif -> ELIF LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE lista_elif .)
+    LPAREN          reduce using rule 5 (lista_elif -> ELIF LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE lista_elif .)
+    $end            reduce using rule 5 (lista_elif -> ELIF LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE lista_elif .)
+    RBRACE          reduce using rule 5 (lista_elif -> ELIF LPAREN condition RPAREN LBRACE lista_instrucciones RBRACE lista_elif .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for MINUS in state 14 resolved as shift
