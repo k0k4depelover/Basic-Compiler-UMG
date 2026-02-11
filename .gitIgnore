@@ -1,1 +1,6 @@
-./Analysis/parser.out
+Analysis/parser.out
+
+Analysis/parsertab.py
+
+**/pycache
+*.pyc
